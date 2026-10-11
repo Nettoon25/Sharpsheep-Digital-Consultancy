@@ -122,101 +122,368 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             
-document.addEventListener("DOMContentLoaded", function () {
-    const filterTabs = document.querySelectorAll(".filter-tab");
-    const searchInput = document.getElementById("service-search");
-    const servicesGrid = document.getElementById("services-grid");
-    const servicesCount = document.getElementById("services-count");
+/* ==========================================
+   SHARPSHEEP — USER EXPERIENCE CONTROLLER
+========================================== */
 
-    if (!servicesGrid || !searchInput) return;
+(() => {
+    "use strict";
 
-    const serviceCards = Array.from(
-        servicesGrid.querySelectorAll(".service-card")
-    );
+    const init = () => {
+        const header = document.querySelector(".site-header");
 
-    let activeFilter = "all";
+        const backToTop = document.querySelector(".back-to-top");
 
-    // Display matching services
-    function filterServices() {
-        const searchTerm = searchInput.value
-            .trim()
-            .toLowerCase();
+        const navLinks = [
+            ...document.querySelectorAll(
+                '.site-header a[href^="#"], nav a[href^="#"]'
+            )
+        ];
 
-        let visibleCount = 0;
+        const sections = [
+            ...document.querySelectorAll("section[id]")
+        ];
 
-        serviceCards.forEach(function (card) {
-            const category = (
-                card.dataset.category || ""
-            ).toLowerCase();
+        const reduceMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
 
-            const serviceName = (
-                card.dataset.name || ""
-            ).toLowerCase();
+        /* --------------------------------------
+           1. SCROLL POSITION
+        -------------------------------------- */
 
-            const cardText = card.textContent.toLowerCase();
+        let ticking = false;
 
-            // Match the selected category
-            const matchesCategory =
-                activeFilter === "all" ||
-                category === activeFilter;
+        const updateScrollUI = () => {
+            const scrollY = window.scrollY;
 
-            // Match the search term against service name,
-            // description, price and other card text
-            const matchesSearch =
-                searchTerm === "" ||
-                serviceName.includes(searchTerm) ||
-                category.includes(searchTerm) ||
-                cardText.includes(searchTerm);
-
-            const shouldShow =
-                matchesCategory && matchesSearch;
-
-            card.hidden = !shouldShow;
-
-            if (shouldShow) {
-                visibleCount++;
+            if (header) {
+                header.classList.toggle(
+                    "is-scrolled",
+                    scrollY > 20
+                );
             }
-        });
 
-        // Update the number of matching services
-        if (servicesCount) {
-            servicesCount.textContent = visibleCount;
-        }
+            if (backToTop) {
+                backToTop.classList.toggle(
+                    "is-visible",
+                    scrollY > 450
+                );
 
-        // Update the results message
-        const resultsMessage = document.getElementById(
-            "services-results-message"
+                backToTop.setAttribute(
+                    "aria-hidden",
+                    scrollY > 450 ? "false" : "true"
+                );
+            }
+
+            ticking = false;
+        };
+
+        window.addEventListener(
+            "scroll",
+            () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateScrollUI);
+                    ticking = true;
+                }
+            },
+            { passive: true }
         );
 
-        if (resultsMessage) {
-            resultsMessage.textContent = visibleCount === 0
-                ? "No services found. Try another search or filter."
-                : `Showing ${visibleCount} of ${serviceCards.length} services`;
-        }
-    }
+        updateScrollUI();
 
-    // Handle category filter buttons
-    filterTabs.forEach(function (tab) {
-        tab.addEventListener("click", function () {
-            activeFilter = tab.dataset.filter || "all";
+        /* --------------------------------------
+           2. SMOOTH INTERNAL NAVIGATION
+        -------------------------------------- */
 
-            filterTabs.forEach(function (button) {
-                const isActive = button === tab;
+        document.addEventListener("click", (event) => {
+            const link = event.target.closest('a[href^="#"]');
 
-                button.classList.toggle("active", isActive);
-                button.setAttribute(
-                    "aria-pressed",
-                    String(isActive)
-                );
+            if (!link) return;
+
+            const href = link.getAttribute("href");
+
+            if (!href || href === "#") return;
+
+            let target;
+
+            try {
+                target = document.querySelector(href);
+            } catch {
+                return;
+            }
+
+            if (!target) return;
+
+            event.preventDefault();
+
+            const headerHeight = header
+                ? header.getBoundingClientRect().height
+                : 0;
+
+            const targetTop =
+                target.getBoundingClientRect().top +
+                window.scrollY -
+                headerHeight -
+                16;
+
+            window.scrollTo({
+                top: Math.max(0, targetTop),
+                behavior: reduceMotion ? "auto" : "smooth"
             });
 
-            filterServices();
+            /* Update the URL without triggering a second jump */
+            if (window.location.hash !== href) {
+                window.history.pushState(null, "", href);
+            }
+
+            /* Close mobile menu if present */
+            closeMobileMenu();
+
+            /* Keyboard and assistive-technology support */
+            if (!target.hasAttribute("tabindex")) {
+                target.setAttribute("tabindex", "-1");
+            }
+
+            target.focus({ preventScroll: true });
         });
-    });
 
-    // Handle live search as the user types
-    searchInput.addEventListener("input", filterServices);
+        /* --------------------------------------
+           3. SCROLL REVEAL
+        -------------------------------------- */
 
-    // Make sure all services are displayed initially
-    filterServices();
-});
+        const revealSelectors = [
+            ".section-heading",
+            ".approach-copy",
+            ".approach-art",
+            ".director-copy",
+            ".director-art",
+            ".partner-card",
+            ".insight-card",
+            ".steps-list .step",
+            ".partners-cta",
+            ".leadership-note"
+        ];
+
+        const revealElements = [
+            ...new Set(
+                revealSelectors.flatMap((selector) =>
+                    document.querySelectorAll(selector)
+                )
+            )
+        ];
+
+        revealElements.forEach((element) => {
+            /* Don't hide elements inside an already-hidden parent */
+            if (element.closest('[hidden], [aria-hidden="true"]')) {
+                return;
+            }
+
+            element.classList.add("js-reveal");
+        });
+
+        if ("IntersectionObserver" in window && !reduceMotion) {
+            const revealObserver = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+
+                        entry.target.classList.add("is-visible");
+
+                        observer.unobserve(entry.target);
+                    });
+                },
+                {
+                    threshold: 0.12,
+                    rootMargin: "0px 0px -35px 0px"
+                }
+            );
+
+            revealElements.forEach((element) => {
+                revealObserver.observe(element);
+            });
+        } else {
+            revealElements.forEach((element) => {
+                element.classList.add("is-visible");
+            });
+        }
+
+        /* --------------------------------------
+           4. STAGGERED CARD ANIMATIONS
+        -------------------------------------- */
+
+        document.querySelectorAll(
+            ".partners-grid, .insights-grid, .steps-list"
+        ).forEach((container) => {
+            const children = container.querySelectorAll(
+                ".partner-card, .insight-card, .step"
+            );
+
+            children.forEach((child, index) => {
+                child.style.setProperty(
+                    "--reveal-delay",
+                    `${Math.min(index * 100, 300)}ms`
+                );
+            });
+        });
+
+        /* --------------------------------------
+           5. ACTIVE NAVIGATION LINK
+        -------------------------------------- */
+
+        if ("IntersectionObserver" in window) {
+            const navObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+
+                        const id = entry.target.id;
+
+                        navLinks.forEach((link) => {
+                            const isActive =
+                                link.getAttribute("href") === `#${id}`;
+
+                            link.classList.toggle("active", isActive);
+
+                            if (isActive) {
+                                link.setAttribute(
+                                    "aria-current",
+                                    "location"
+                                );
+                            } else {
+                                link.removeAttribute("aria-current");
+                            }
+                        });
+                    });
+                },
+                {
+                    rootMargin: "-25% 0px -60% 0px",
+                    threshold: 0
+                }
+            );
+
+            sections.forEach((section) => {
+                navObserver.observe(section);
+            });
+        }
+
+        /* --------------------------------------
+           6. BACK-TO-TOP BUTTON
+        -------------------------------------- */
+
+        if (backToTop) {
+            backToTop.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: reduceMotion ? "auto" : "smooth"
+                });
+
+                if (window.location.hash) {
+                    window.history.replaceState(
+                        null,
+                        "",
+                        window.location.pathname +
+                        window.location.search
+                    );
+                }
+            });
+        }
+
+        /* --------------------------------------
+           7. MOBILE MENU
+        -------------------------------------- */
+
+        const menuToggle = document.querySelector(
+            "[data-menu-toggle]"
+        );
+
+        const mobileMenu = document.querySelector(
+            "[data-mobile-menu]"
+        );
+
+        function closeMobileMenu() {
+            if (!menuToggle || !mobileMenu) return;
+
+            mobileMenu.classList.remove("is-open");
+            menuToggle.setAttribute("aria-expanded", "false");
+            document.body.classList.remove("menu-open");
+        }
+
+        function openMobileMenu() {
+            if (!menuToggle || !mobileMenu) return;
+
+            mobileMenu.classList.add("is-open");
+            menuToggle.setAttribute("aria-expanded", "true");
+            document.body.classList.add("menu-open");
+        }
+
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener("click", () => {
+                const isOpen =
+                    menuToggle.getAttribute("aria-expanded") === "true";
+
+                if (isOpen) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+            });
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") {
+                    closeMobileMenu();
+                }
+            });
+
+            document.addEventListener("click", (event) => {
+                if (
+                    !mobileMenu.contains(event.target) &&
+                    !menuToggle.contains(event.target)
+                ) {
+                    closeMobileMenu();
+                }
+            });
+
+            window.addEventListener("resize", () => {
+                if (window.innerWidth > 768) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        /* --------------------------------------
+           8. IMAGE LOADING FALLBACK
+        -------------------------------------- */
+
+        document.querySelectorAll("img").forEach((img) => {
+            img.addEventListener("error", () => {
+                img.classList.add("image-unavailable");
+            });
+        });
+
+        /* --------------------------------------
+           9. EXTERNAL LINKS
+        -------------------------------------- */
+
+        document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+            const relValues = new Set(
+                (link.getAttribute("rel") || "")
+                    .split(/\s+/)
+                    .filter(Boolean)
+            );
+
+            relValues.add("noopener");
+            relValues.add("noreferrer");
+
+            link.setAttribute("rel", [...relValues].join(" "));
+        });
+    };
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init, {
+            once: true
+        });
+    } else {
+        init();
+    }
+})();

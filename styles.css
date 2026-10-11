@@ -1980,10 +1980,18 @@ html[data-theme="dark"] .text-link {
   }
   .section-heading h2,.approach-copy h2,.director-copy h2,.faq-intro h2,.contact-grid h2 {
     font-size: 36px;
+      background:transparent;
   }
   .section-heading>p {
     max-width: 520px;
+      background:transparent;
   }
+
+  
+html[data-theme="dark"] .section-heading .partners-headingr{
+  background: black;
+}
+
   .filter-tabs {
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -2944,3 +2952,298 @@ html[data-theme="dark"] .partners-note { background: rgba(217,154,30,.1); }
 }
 
 
+
+/* ==========================================
+   SHARPSHEEP — SMOOTH USER EXPERIENCE
+========================================== */
+
+:root {
+    --ux-accent: var(--accent-color, #e65135);
+    --ux-header-height: 80px;
+    --ux-transition: 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Smooth anchor navigation */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--ux-header-height) + 20px);
+}
+
+body {
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* Prevent anchored sections from hiding under a sticky header */
+section[id],
+[id].section {
+    scroll-margin-top: calc(var(--ux-header-height) + 20px);
+}
+
+/* Better keyboard focus */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    outline: 3px solid var(--ux-accent);
+    outline-offset: 4px;
+}
+
+/* ==========================================
+   STICKY HEADER
+   Add class "site-header" to your header
+========================================== */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition:
+        background-color var(--ux-transition),
+        box-shadow var(--ux-transition),
+        border-color var(--ux-transition),
+        backdrop-filter var(--ux-transition);
+}
+
+.site-header.is-scrolled {
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+/* Dark-mode header */
+html[data-theme="dark"] .site-header.is-scrolled,
+body.dark-mode .site-header.is-scrolled {
+    background: rgba(18, 20, 25, 0.92);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+}
+
+/* ==========================================
+   NAVIGATION INTERACTIONS
+========================================== */
+
+.site-header nav a,
+.site-header .nav-link {
+    position: relative;
+    transition: color var(--ux-transition);
+}
+
+.site-header nav a::after,
+.site-header .nav-link::after {
+    position: absolute;
+    right: 0;
+    bottom: -5px;
+    left: 0;
+    height: 2px;
+    content: "";
+    background: var(--ux-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--ux-transition);
+}
+
+.site-header nav a:hover::after,
+.site-header nav a.active::after,
+.site-header .nav-link:hover::after,
+.site-header .nav-link.active::after {
+    transform: scaleX(1);
+}
+
+.site-header nav a.active,
+.site-header .nav-link.active {
+    color: var(--ux-accent);
+}
+
+/* ==========================================
+   SCROLL-REVEAL ANIMATIONS
+========================================== */
+
+.js-reveal {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition:
+        opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js-reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+/* Optional directions */
+.js-reveal[data-reveal="left"] {
+    transform: translate3d(-28px, 0, 0);
+}
+
+.js-reveal[data-reveal="right"] {
+    transform: translate3d(28px, 0, 0);
+}
+
+.js-reveal[data-reveal="scale"] {
+    transform: scale(0.96);
+}
+
+.js-reveal[data-reveal="left"].is-visible,
+.js-reveal[data-reveal="right"].is-visible {
+    transform: translate3d(0, 0, 0);
+}
+
+.js-reveal[data-reveal="scale"].is-visible {
+    transform: scale(1);
+}
+
+/* Avoid accidental content clipping during animations */
+.insight-card,
+.partner-card,
+.director-card,
+.approach-grid {
+    will-change: auto;
+}
+
+/* ==========================================
+   CARD AND IMAGE INTERACTIONS
+========================================== */
+
+.partner-card,
+.insight-card {
+    transition:
+        transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 300ms ease,
+        border-color 300ms ease;
+}
+
+.partner-card img,
+.insight-card img {
+    transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .partner-card:hover,
+    .insight-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .partner-card:hover img,
+    .insight-card:hover img {
+        transform: scale(1.035);
+    }
+}
+
+/* ==========================================
+   BUTTON INTERACTIONS
+========================================== */
+
+.button,
+.button-primary,
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.button,
+.button-primary {
+    transition:
+        transform 220ms ease,
+        box-shadow 220ms ease,
+        background-color 220ms ease,
+        color 220ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .button:hover,
+    .button-primary:hover {
+        transform: translateY(-2px);
+    }
+}
+
+.button:active,
+.button-primary:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================
+   BACK-TO-TOP BUTTON
+========================================== */
+
+.back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 950;
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: var(--ux-accent);
+    color: #fff;
+    font-size: 1.35rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.17);
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(12px);
+
+    transition:
+        opacity 220ms ease,
+        visibility 220ms ease,
+        transform 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+/* ==========================================
+   MOBILE OPTIMISATION
+========================================== */
+
+@media (max-width: 768px) {
+    :root {
+        --ux-header-height: 68px;
+    }
+
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* ==========================================
+   ACCESSIBILITY: REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .js-reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
