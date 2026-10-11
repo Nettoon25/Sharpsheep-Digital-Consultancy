@@ -97,3 +97,126 @@ document.addEventListener('DOMContentLoaded', () => {
     window.setTimeout(() => toast.classList.remove('show'), 2800);
   }
 });
+
+ {
+                "@context": "https://schema.org",
+                "@type": "ProfessionalService",
+                "name": "Sharpsheep Digital Consultancy",
+                "description": "Business documentation, company registration, policy writing, proposals, tender preparation and digital services in Kenya.",
+                "areaServed": {
+                    "@type": "Country",
+                    "name": "Kenya"
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Nairobi",
+                    "addressCountry": "KE"
+                },
+                "telephone": "+254759984050",
+                "email": "sharpsheepdigitalconsultancy@gmail.com",
+                "sameAs": [
+                    "https://www.tiktok.com/@sharpsheep11"
+                ]
+            }
+
+
+
+            
+document.addEventListener("DOMContentLoaded", function () {
+    const filterTabs = document.querySelectorAll(".filter-tab");
+    const searchInput = document.getElementById("service-search");
+    const servicesGrid = document.getElementById("services-grid");
+    const servicesCount = document.getElementById("services-count");
+
+    if (!servicesGrid || !searchInput) return;
+
+    const serviceCards = Array.from(
+        servicesGrid.querySelectorAll(".service-card")
+    );
+
+    let activeFilter = "all";
+
+    // Display matching services
+    function filterServices() {
+        const searchTerm = searchInput.value
+            .trim()
+            .toLowerCase();
+
+        let visibleCount = 0;
+
+        serviceCards.forEach(function (card) {
+            const category = (
+                card.dataset.category || ""
+            ).toLowerCase();
+
+            const serviceName = (
+                card.dataset.name || ""
+            ).toLowerCase();
+
+            const cardText = card.textContent.toLowerCase();
+
+            // Match the selected category
+            const matchesCategory =
+                activeFilter === "all" ||
+                category === activeFilter;
+
+            // Match the search term against service name,
+            // description, price and other card text
+            const matchesSearch =
+                searchTerm === "" ||
+                serviceName.includes(searchTerm) ||
+                category.includes(searchTerm) ||
+                cardText.includes(searchTerm);
+
+            const shouldShow =
+                matchesCategory && matchesSearch;
+
+            card.hidden = !shouldShow;
+
+            if (shouldShow) {
+                visibleCount++;
+            }
+        });
+
+        // Update the number of matching services
+        if (servicesCount) {
+            servicesCount.textContent = visibleCount;
+        }
+
+        // Update the results message
+        const resultsMessage = document.getElementById(
+            "services-results-message"
+        );
+
+        if (resultsMessage) {
+            resultsMessage.textContent = visibleCount === 0
+                ? "No services found. Try another search or filter."
+                : `Showing ${visibleCount} of ${serviceCards.length} services`;
+        }
+    }
+
+    // Handle category filter buttons
+    filterTabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+            activeFilter = tab.dataset.filter || "all";
+
+            filterTabs.forEach(function (button) {
+                const isActive = button === tab;
+
+                button.classList.toggle("active", isActive);
+                button.setAttribute(
+                    "aria-pressed",
+                    String(isActive)
+                );
+            });
+
+            filterServices();
+        });
+    });
+
+    // Handle live search as the user types
+    searchInput.addEventListener("input", filterServices);
+
+    // Make sure all services are displayed initially
+    filterServices();
+});
