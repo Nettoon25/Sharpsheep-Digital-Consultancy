@@ -277,7 +277,7 @@ img {
 
 html[data-theme="dark"] .brand-copy strong{
 
-   color: orange;
+   color: transparent;
 }
 
 
@@ -362,6 +362,7 @@ html[data-theme="dark"] .brand-copy small{
   display: flex;
   align-items: center;
   gap: 10px;
+  
 }
 
 .eyebrow-line {
@@ -1069,14 +1070,26 @@ html[data-theme="dark"] .text-link {
   display: grid;
   grid-template-columns: .9fr 1.1fr;
   align-items: center;
-  gap: 95px;
+  gap: 150px;
+   color: transparent;
+}
+
+.approach-grid .approach-copy
+{
+   margin-top: 0px;
+   padding-top: 0px;
 }
 
 .approach-art {
-  height: 420px;
+  height:auto;
+  min-height:420px;
+ min-height: 420px;
   position: relative;
   display: grid;
   place-items: center;
+  border-style: dotted;
+  margin-left: 1rem;
+  margin-top: 0px;
 }
 
 .art-ring {
@@ -1160,11 +1173,13 @@ html[data-theme="dark"] .text-link {
   left: 15px;
 }
 
+
 .approach-copy>p,.director-copy>p,.faq-intro>p,.contact-grid>div>p {
   color: var(--soft);
   font-size: 12px;
   line-height: 1.95;
   margin: 22px 0;
+
 }
 
 .steps-list {
@@ -1734,6 +1749,7 @@ html[data-theme="dark"] .text-link {
 .site-footer {
   background: var(--ink);
   color: #fff7eb;
+    background-color: transparent;
   padding: 28px 0 0;
 }
 
@@ -1742,14 +1758,16 @@ html[data-theme="dark"] .text-link {
   align-items: center;
   gap: 35px;
   padding-bottom: 25px;
+    background-color: transparent;
 }
 
 .footer-brand .brand-mark {
-  background: #fff7eb;
+  background-color: transparent;
 }
 
 .footer-brand .brand-copy small {
-  color: #b9aa99;
+  color: black;
+    background-color: transparent;
 }
 
 .footer-top>p {
@@ -1757,12 +1775,14 @@ html[data-theme="dark"] .text-link {
   font-weight: 600;
   line-height: 1.7;
   margin: 0;
+    background-color: transparent;
 }
 
 .footer-top>p span {
   font-size: 10px;
   font-weight: 400;
   color: #b9aa99;
+    background-color: transparent;
 }
 
 .back-top {
@@ -1779,6 +1799,7 @@ html[data-theme="dark"] .text-link {
   padding: 16px 0;
   font-size: 9px;
   color: #b9aa99;
+    background-color: transparent;
 }
 
 .kenya-heart {
@@ -2148,16 +2169,19 @@ html[data-theme="dark"] .section-heading .partners-headingr{
   .footer-top {
     flex-wrap: wrap;
     gap: 18px;
+    background-color: transparent;
   }
   .footer-top>p {
     order: 3;
     width: 100%;
+      background-color: transparent;
   }
   .back-top {
     font-size: 9px;
   }
   .footer-bottom {
     flex-direction: column;
+      background-color: transparent;
     gap: 7px;
   }
   .floating-whatsapp {
@@ -3245,5 +3269,293 @@ button {
     .js-reveal {
         opacity: 1;
         transform: none;
+    }
+}
+
+
+/* NETTOON SMOOTH UX ENHANCEMENTS
+   Add this file after your main stylesheet.
+*/
+
+/* Smooth scrolling with sticky-header offset */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+section[id],
+[id].scroll-target {
+  scroll-margin-top: 100px;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Keep transitions subtle and purposeful */
+a,
+button,
+input,
+textarea,
+select,
+.nav-cta,
+.button,
+.text-link,
+.subpage-card,
+.card,
+.feature-card {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease,
+    opacity 220ms ease;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--brand-red, #e3262e);
+  outline-offset: 4px;
+}
+
+/* Mobile navigation: animated and accessible */
+.menu-toggle {
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  transform-origin: center;
+  transition: transform 200ms ease, opacity 160ms ease;
+}
+
+.menu-toggle[aria-expanded="true"] span:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+@media (max-width: 760px) {
+  .primary-nav {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+  }
+
+  .primary-nav.is-open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+
+/* Reveal elements when they enter the viewport.
+   JavaScript adds .reveal to suitable elements. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 600ms ease, transform 600ms cubic-bezier(.2, .7, .2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional stagger for groups of cards */
+.reveal-stagger > * {
+  --reveal-delay: 0ms;
+}
+
+.reveal-stagger > *:nth-child(2) { --reveal-delay: 70ms; }
+.reveal-stagger > *:nth-child(3) { --reveal-delay: 140ms; }
+.reveal-stagger > *:nth-child(4) { --reveal-delay: 210ms; }
+.reveal-stagger > *:nth-child(5) { --reveal-delay: 280ms; }
+.reveal-stagger > *:nth-child(6) { --reveal-delay: 350ms; }
+
+/* Back-to-top control */
+.scroll-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 900;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(127, 127, 127, .28);
+  border-radius: 50%;
+  background: var(--brand-red, #e3262e);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .16);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(10px);
+}
+
+.scroll-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-top:hover {
+  transform: translateY(-3px);
+}
+
+/* Prevent sticky header from covering in-page headings */
+:target {
+  scroll-margin-top: 100px;
+}
+
+/* Respect the visitor's operating-system accessibility preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+
+/* PROPOSAL TYPES GRID */
+.proposal-types-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin: 28px 0 36px;
+}
+
+.proposal-type-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    padding: 24px;
+    border: 1px solid var(--border-color, rgba(128, 128, 128, 0.22));
+    border-radius: 16px;
+    background: var(--card-background, rgba(128, 128, 128, 0.045));
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.proposal-type-card:hover {
+    transform: translateY(-5px);
+    border-color: #e85d3f;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+}
+
+.proposal-type-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    background: rgba(232, 93, 63, 0.12);
+    color: green;
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+html[data-theme="dark"] .proposal-type-number {
+  color: yellow;
+}
+
+.proposal-type-card h4 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    line-height: 1.45;
+}
+
+.proposal-type-card p {
+    margin: 0 0 20px;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    opacity: 0.8;
+}
+
+.proposal-type-purpose {
+    display: inline-block;
+    margin-top: auto;
+    padding: 7px 11px;
+    border-radius: 30px;
+    background: rgba(128, 128, 128, 0.1);
+    font-size: 0.76rem;
+    font-weight: 600;
+}
+
+/* TABLETS */
+@media (max-width: 900px) {
+    .proposal-types-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .proposal-type-card {
+        padding: 20px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 560px) {
+    .proposal-types-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .proposal-type-card {
+        padding: 20px;
+    }
+
+    .proposal-type-card:hover {
+        transform: translateY(-2px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .proposal-type-card {
+        transition: none;
     }
 }
