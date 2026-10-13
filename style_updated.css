@@ -1,0 +1,5756 @@
+/* =========================================================
+   CHURCH WEBSITE
+   PREMIUM GLOBAL STYLES
+   HABIYE-INSPIRED BLUE / ORANGE BRANDING
+   LIGHT + DARK MODE
+   ========================================================= */
+
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+:root {
+
+    --primary: #0f62fe;
+    --primary-dark:  #050a12;
+    --primary-deep: #0043ce;
+
+    --accent: #f97316;
+    --accent-light: #fb923c;
+
+    --white: #ffffff;
+    --black: #000000;
+
+    --text: #172033;
+    --muted: #667085;
+
+    /* MAIN PAGE BACKGROUND */
+    --background: #8D0F7B;
+
+    /* OTHER SECTIONS */
+    --surface: #ffffff;
+    --surface-alt: #eef5ff;
+
+    --border: #e4e7ec;
+
+    --footer: #050a12;
+
+    --success: #16803c;
+    --danger: #dc2626;
+
+    --container: 1200px;
+
+    --shadow:
+        0 10px 35px rgba(15, 98, 254, 0.10);
+
+    --shadow-lg:
+        0 20px 50px rgba(11, 18, 32, 0.14);
+
+    --transition:
+        all 0.3s ease;
+
+    /* AGFC BRAND COLORS */
+    --agfc-yellow: #facc15;
+    --agfc-yellow-dark: #fde047;
+
+    /* LIGHT MODE TEXT FOR MAGENTA SECTIONS */
+    --agfc-light-text: rgba(255, 255, 255, 0.82);
+
+        --paragraph-color: #f3f4f6;
+
+        --paragraph-color: rgba(255, 255, 255, 0.88);
+}
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+[data-theme="dark"],
+.dark-theme {
+
+    --primary: #4d8dff;
+    --primary-dark:#000000;
+    --primary-deep: #2f6fe4;
+
+    --accent: #ff8a3d;
+    --accent-light: #ffad70;
+
+    --white: #f8fafc;
+    --black: #000000;
+
+    --text: #f1f5f9;
+    --muted: #a8b2c1;
+
+    /* MAIN PAGE BACKGROUND */
+    --background: #8D0F7B;
+
+    /* OTHER SECTIONS */
+    --surface: #000000;
+    --surface-alt:#000000;
+
+    --border: #202b3b;
+
+    /* PURE BLACK HEADER AND FOOTER */
+    --header: #000000;
+    --footer: #000000;
+
+    --shadow:
+        0 10px 35px rgba(0, 0, 0, 0.35);
+
+    --shadow-lg:
+        0 20px 50px rgba(0, 0, 0, 0.45);
+
+    --paragraph-color: rgba(255, 255, 255, 0.88);
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+   
+
+    color: var(--text);
+
+    background: var(--background);
+
+    line-height: 1.6;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+button {
+    font-family: inherit;
+}
+
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.container {
+
+    width:
+        min(92%, var(--container));
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.top-bar {
+
+    background:
+        var(--primary-dark);
+
+    color:
+        rgba(255, 255, 255, 0.85);
+
+    font-size: 13px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+}
+
+
+.top-bar-inner {
+
+    min-height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.top-info {
+
+    display: flex;
+
+    gap: 25px;
+}
+
+
+.top-contact a {
+
+    color:
+        var(--accent-light);
+
+    font-weight: 600;
+
+    transition:
+        var(--transition);
+}
+
+
+.top-contact a:hover {
+    color: var(--white);
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+
+    background:
+        var(--surface);
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    z-index: 1000;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    box-shadow:
+        0 2px 15px
+        rgba(0, 0, 0, 0.06);
+
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.nav-inner {
+
+    min-height: 82px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+/* =========================
+   CHURCH LOGO / NAVIGATION
+========================= */
+
+.church-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Logo image */
+.logo-symbol {
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+}
+
+.logo-symbol img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0%;
+}
+
+/* Logo text */
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* AGFC */
+.logo-text strong {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0;
+}
+
+
+
+.logo-text span {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+/* =========================================================
+   DESKTOP NAV
+   ========================================================= */
+
+.desktop-nav {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+    margin-left: auto;
+}
+
+
+.desktop-nav a {
+
+    position: relative;
+
+    color:
+        var(--text);
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    transition:
+        var(--transition);
+}
+
+
+.desktop-nav a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -8px;
+
+    width: 0;
+
+    height: 2px;
+
+    background:
+        var(--accent);
+
+    transition:
+        var(--transition);
+}
+
+
+.desktop-nav a:hover {
+
+    color:
+        var(--primary);
+}
+
+
+.desktop-nav a:hover::after {
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   NAV ACTIONS
+   ========================================================= */
+
+.nav-action {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
+
+.theme-toggle {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        var(--surface);
+
+    color:
+        var(--text);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    transition:
+        var(--transition);
+}
+
+
+.theme-toggle:hover {
+
+    background:
+        var(--primary);
+
+    color:
+        #ffffff;
+
+    border-color:
+        var(--primary);
+
+    transform:
+        rotate(15deg)
+        scale(1.05);
+}
+
+
+/* =========================================================
+   GIVE BUTTON
+   ========================================================= */
+
+.give-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        11px 23px;
+
+    border-radius: 6px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #ea580c
+        );
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition:
+        var(--transition);
+
+    box-shadow:
+        0 7px 18px
+        rgba(249, 115, 22, 0.20);
+}
+
+
+.give-btn:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary-deep)
+        );
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(15, 98, 254, 0.25);
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+   ========================================================= */
+
+.mobile-menu-btn {
+
+    display: none;
+
+    border: none;
+
+    background:
+        transparent;
+
+    cursor: pointer;
+
+    width: 42px;
+    height: 42px;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+.mobile-menu-btn span {
+
+    width: 24px;
+
+    height: 2px;
+
+    background:
+        var(--primary);
+
+    transition:
+        var(--transition);
+}
+
+
+.mobile-menu-btn.active
+span:nth-child(1) {
+
+    transform:
+        rotate(45deg)
+        translate(5px, 5px);
+}
+
+
+.mobile-menu-btn.active
+span:nth-child(2) {
+
+    opacity: 0;
+}
+
+
+.mobile-menu-btn.active
+span:nth-child(3) {
+
+    transform:
+        rotate(-45deg)
+        translate(5px, -5px);
+}
+
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+.mobile-menu {
+
+    display: none;
+
+    background:
+        var(--surface);
+
+    border-top:
+        1px solid
+        var(--border);
+
+    padding:
+        15px 5%;
+}
+
+
+.mobile-menu a {
+
+    display: block;
+
+    padding:
+        13px 0;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    color:
+        var(--text);
+
+    font-weight: 500;
+
+    transition:
+        var(--transition);
+}
+
+
+.mobile-menu a:hover {
+
+    color:
+        var(--primary);
+}
+
+
+.mobile-menu.active {
+    display: block;
+}
+
+
+.mobile-give {
+
+    margin-top: 12px;
+
+    background:
+        var(--accent);
+
+    color:
+        #ffffff !important;
+
+    text-align: center;
+
+    border-radius: 5px;
+}
+
+
+/* =========================================================
+   MOBILE THEME ROW
+   ========================================================= */
+
+.mobile-theme-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        18px 0;
+
+    color:
+        var(--text);
+
+    font-weight: 600;
+}
+
+
+.mobile-theme-row
+.theme-toggle {
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+
+    background:
+        var(--footer);
+
+    color:
+        rgba(255,255,255,0.72);
+
+    margin-top: 80px;
+}
+
+
+.footer-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        1.2fr;
+
+    gap: 55px;
+
+    padding-top: 70px;
+
+    padding-bottom: 60px;
+}
+
+
+.footer-column {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.footer-column h3 {
+
+    color:
+        #ffffff;
+
+    font-size: 17px;
+
+    margin-bottom: 12px;
+}
+
+
+.footer-column a {
+
+    transition:
+        var(--transition);
+}
+
+
+.footer-column a:hover {
+
+    color:
+        var(--accent-light);
+}
+
+
+.footer-about p {
+
+    max-width: 350px;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   FOOTER LOGO
+   ========================================================= */
+
+.footer-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 15px;
+}
+
+
+.footer-logo-symbol {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background:
+        var(--accent);
+
+    color:
+        #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.footer-logo strong {
+
+    display: block;
+
+    color:
+        #ffffff;
+
+    font-size: 16px;
+}
+
+
+.footer-logo span {
+
+    display: block;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color:
+        var(--accent-light);
+}
+
+
+/* =========================================================
+   SOCIAL
+   ========================================================= */
+
+.social-links {
+
+    display: flex;
+
+    gap: 9px;
+
+    margin-top: 12px;
+}
+
+
+.social-links a {
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color:
+        white;
+
+    font-weight: bold;
+
+    transition:
+        var(--transition);
+}
+
+
+.social-links a:hover {
+
+    background:
+        var(--accent);
+
+    transform:
+        translateY(-3px);
+}
+
+
+/* =========================================================
+   SERVICE TIMES
+   ========================================================= */
+
+.service-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    margin-bottom: 8px;
+}
+
+
+.service-item strong {
+
+    color:
+        #ffffff;
+
+    font-size: 14px;
+}
+
+
+.service-item span {
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+   ========================================================= */
+
+.footer-bottom {
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+}
+
+
+.footer-bottom-inner {
+
+    min-height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    font-size: 12px;
+}
+
+
+
+
+/* =========================================================
+   HOMEPAGE - HERO
+   ========================================================= */
+
+.hero {
+
+    position: relative;
+
+    height: 650px;
+
+    display: flex;
+
+    align-items: center;
+
+    background-image:
+        url("logo 2.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    color:
+        #ffffff;
+
+    padding:
+        100px 0;
+}
+
+
+.hero-small {
+
+    display: inline-block;
+
+    color:white;
+
+            font-family:Georgia,serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 18px;
+}
+
+
+.hero h1 {
+
+    max-width: 700px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(48px, 7vw, 82px);
+
+    line-height: 1.05;
+
+    margin-bottom: 25px;
+
+    color:
+        #ffffff;
+}
+
+
+.hero h1 span {
+
+    display: block;
+
+    color:
+        var(--primary);
+}
+
+
+.hero p {
+
+    max-width: 570px;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    color:
+        #ffffff;
+
+    margin-bottom: 32px;
+}
+
+
+.hero-buttons {
+
+    display: flex;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+}
+
+
+.hero-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        13px 25px;
+
+    border-radius: 6px;
+
+    font-weight: 700;
+
+    transition:
+        var(--transition);
+}
+
+
+.hero-btn.primary {
+
+    background:
+         var(--accent);
+
+    color:
+        #ffffff;
+
+    box-shadow:
+        0 8px 22px
+        rgba(15, 98, 254, 0.28);
+}
+
+
+.hero-btn.primary:hover {
+
+    background:
+        var(--accent);
+}
+
+
+.hero-btn.secondary {
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid
+        var(--primary);
+
+    color:
+        var(--primary);
+}
+
+
+.hero-btn.secondary:hover {
+
+    background:
+        #ffffff;
+
+    color:
+        var(--primary);
+}
+
+
+/* =========================================================
+   SECTION GLOBAL
+   ========================================================= */
+
+.welcome-section,
+.services-section,
+.ministries-preview {
+
+    padding:
+        100px 0;
+}
+
+
+.section-label {
+
+    color:
+        var(--primary);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+}
+
+
+.section-heading h2,
+.welcome-content h2 {
+
+    color:
+        var(--text);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(32px, 4vw, 48px);
+
+    line-height: 1.2;
+
+    margin-bottom: 15px;
+}
+
+
+.section-heading p,
+.welcome-content p,
+.ministry-content p {
+
+    color:
+        var(--muted);
+}
+
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+.welcome-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    align-items: center;
+
+    gap: 80px;
+}
+
+
+
+.welcome-image img {
+
+    width: 100%;
+
+    height: 500px;
+
+    object-fit: cover;
+
+    border-radius: 5px;
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.welcome-content h2 span {
+
+    display: block;
+
+    color:
+        var(--accent);
+}
+
+
+.text-link {
+
+    display: inline-block;
+
+    margin-top: 12px;
+
+    color:
+        var(--primary);
+
+    font-weight: 700;
+}
+
+
+.text-link:hover {
+
+    color:
+        var(--accent);
+}
+
+
+/* =========================================================
+   SERVICES
+   ========================================================= */
+
+.services-section {
+
+    background:
+        var(--surface-alt);
+}
+
+
+.service-cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+.service-card {
+
+    background:
+        var(--surface);
+
+    padding:
+        40px 30px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        12px;
+
+    transition:
+        var(--transition);
+}
+
+
+.service-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        var(--shadow);
+
+    border-color:
+        transparent;
+}
+
+
+.service-icon {
+
+    width: 58px;
+    height: 58px;
+
+    margin:
+        0 auto 20px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(249,115,22,0.12);
+
+    color:
+        var(--accent);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 24px;
+}
+
+
+.service-card h3 {
+
+    color:
+        var(--primary);
+
+    margin-bottom: 8px;
+}
+
+
+.service-card p {
+
+    color:
+        var(--muted);
+
+    font-size: 14px;
+}
+
+
+.service-card strong {
+
+    color:
+        var(--accent);
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   MINISTRIES
+   ========================================================= */
+
+.ministry-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+.ministry-card {
+
+    background:
+        var(--surface);
+
+    border-radius:
+        12px;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        var(--border);
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,0.07);
+
+    transition:
+        var(--transition);
+}
+
+
+.ministry-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.ministry-card img {
+
+    width: 100%;
+
+    height: 240px;
+
+    object-fit: cover;
+}
+
+
+.ministry-content {
+
+    padding:
+        25px;
+}
+
+
+.ministry-content > span {
+
+    color:
+        var(--accent);
+        
+            font-family:Georgia, serif;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.ministry-content h3 {
+
+    color:black;
+
+    font-family: Georgia,serif;
+
+    font-size: 24px;
+
+    margin:
+        7px 0;
+}
+
+
+.dark-theme .ministry-content h3 
+{
+  color: white;
+    
+}
+
+
+.ministry-content p {
+
+    color:
+        var(--muted);
+
+    font-size: 14px;
+
+    margin-bottom: 15px;
+}
+
+
+.ministry-content a {
+
+    color:
+        var(--primary);
+
+    font-weight: 700;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.church-cta {
+margin-top: 5rem;
+    padding:
+        110px 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(11,18,32,0.97),
+            rgba(15,98,254,0.88)
+        ),
+        url("assets/images/church-cta.jpg")
+        center / cover;
+}
+
+
+.cta-content {
+
+    color:
+        #ffffff;
+}
+
+
+.cta-content > span {
+
+    color:
+        var(--accent-light);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.cta-content h2 {
+
+    color:
+        #ffffff;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(35px, 5vw, 58px);
+
+    line-height: 1.1;
+
+    margin:
+        15px 0;
+}
+
+
+.cta-content p {
+
+    color:
+        rgba(255,255,255,0.82);
+
+    max-width: 550px;
+
+    margin-bottom: 25px;
+}
+
+
+.cta-button {
+
+    display: inline-block;
+
+    padding:
+        14px 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #ea580c
+        );
+
+    color:
+        white;
+
+    border-radius:
+        6px;
+
+    font-weight:
+        700;
+
+    transition:
+        var(--transition);
+
+    box-shadow:
+        0 8px 20px
+        rgba(249,115,22,0.22);
+}
+
+
+.cta-button:hover {
+
+    background:
+        white;
+
+    color:
+        var(--primary);
+}
+
+
+/* =========================================================
+   ABOUT PAGE
+   ========================================================= */
+
+.page-hero {
+
+    padding:
+        150px 0 100px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-dark),
+            var(--primary-deep)
+        );
+
+    color:
+        #ffffff;
+
+    text-align:
+        center;
+}
+
+
+.page-hero-label {
+
+    display:
+        inline-block;
+
+    margin-bottom:
+        18px;
+
+    color:
+        var(--accent-light);
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2px;
+}
+
+
+.page-hero h1 {
+
+    max-width:
+        850px;
+
+    margin:
+        0 auto 20px;
+
+    font-size:
+        clamp(42px, 6vw, 72px);
+
+    line-height:
+        1.05;
+}
+
+
+.page-hero h1 span {
+
+    color:
+        var(--accent-light);
+}
+
+
+.page-hero p {
+
+    max-width:
+        650px;
+
+    margin:
+        0 auto;
+
+    color:
+        rgba(255,255,255,0.78);
+
+    font-size:
+        18px;
+
+    line-height:
+        1.7;
+}
+
+
+/* =========================================================
+   ABOUT INTRO
+   ========================================================= */
+
+.about-intro {
+
+    padding:
+        100px 0;
+
+    background:
+        var(--background);
+}
+
+
+.about-intro-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        70px;
+
+    align-items:
+        center;
+}
+
+
+.about-intro-image img {
+
+    width:
+        100%;
+
+    height:
+        520px;
+
+    object-fit:
+        cover;
+
+    border-radius:
+        12px;
+
+    box-shadow:
+        var(--shadow-lg);
+}
+
+
+.about-intro-content h2,
+.story-content h2 {
+
+    margin:
+        12px 0 25px;
+
+    font-size:
+        clamp(34px, 4vw, 52px);
+
+    line-height:
+        1.1;
+
+    color:
+        var(--text);
+}
+
+
+.about-intro-content h2 span,
+.story-content h2 span {
+
+    color:
+        var(--primary);
+}
+
+
+.about-intro-content p,
+.story-content p {
+
+    margin-bottom:
+        18px;
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.8;
+}
+
+
+/* =========================================================
+   MISSION
+   ========================================================= */
+
+.mission-section {
+
+    padding:
+        100px 0;
+
+    background:
+        var(--surface-alt);
+}
+
+
+.mission-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        25px;
+
+    margin-top:
+        50px;
+}
+
+
+.mission-card {
+
+    padding:
+        40px 30px;
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        12px;
+
+    text-align:
+        center;
+
+    transition:
+        var(--transition);
+}
+
+
+.mission-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        var(--shadow-lg);
+}
+
+
+.mission-icon {
+
+    width:
+        65px;
+
+    height:
+        65px;
+
+    margin:
+        0 auto 25px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--surface-alt);
+
+    color:
+        var(--primary);
+
+    font-size:
+        28px;
+}
+
+
+.mission-card h3 {
+
+    margin-bottom:
+        15px;
+
+    color:
+        var(--text);
+
+    font-size:
+        22px;
+}
+
+
+.mission-card p {
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.7;
+}
+
+
+/* =========================================================
+   STORY
+   ========================================================= */
+
+.story-section {
+
+    padding:
+        100px 0;
+
+    background:
+        var(--background);
+}
+
+
+.story-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        70px;
+
+    align-items:
+        center;
+}
+
+
+.story-image img {
+
+    width:
+        100%;
+
+    height:
+        500px;
+
+    object-fit:
+        cover;
+
+    border-radius:
+        12px;
+
+    box-shadow:
+        var(--shadow-lg);
+}
+/* =========================================================
+   EARLY FOUNDING TEAM
+   ========================================================= */
+
+.beliefs-section {
+
+    padding:
+        100px 0;
+
+    background:
+        var(--surface);
+}
+
+
+/* =========================================================
+   FOUNDING TEAM GRID
+   ========================================================= */
+
+.beliefs-list {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    justify-content:
+        center;
+
+    gap:
+        30px;
+
+    max-width:
+        1200px;
+
+    margin:
+        55px auto 0;
+}
+
+
+/* =========================================================
+   INDIVIDUAL TEAM MEMBER
+   ========================================================= */
+
+.belief-item {
+
+    flex:
+        1 1 250px;
+
+    max-width:
+        270px;
+
+    padding:
+        0;
+
+    border:
+        none;
+
+    text-align:
+        center;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+}
+
+
+/* =========================================================
+   MEMBER IMAGE
+   ========================================================= */
+
+.belief-image {
+
+    width:
+        100%;
+
+    height:
+        280px;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        12px;
+
+    background:
+        var(--surface-alt);
+
+    margin-bottom:
+        20px;
+}
+
+
+.belief-image img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        block;
+
+    object-fit:
+        cover;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+.belief-item:hover .belief-image img {
+
+    transform:
+        scale(1.05);
+}
+
+
+/* =========================================================
+   MEMBER CONTENT
+   ========================================================= */
+
+.belief-content {
+
+    width:
+        100%;
+}
+
+
+.belief-item h3 {
+
+    margin:
+        0 0 10px;
+
+    color:
+        var(--text);
+
+    font-size:
+        21px;
+
+    line-height:
+        1.3;
+}
+
+
+.belief-item p {
+
+    margin:
+        0;
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.7;
+
+    font-size:
+        15px;
+}
+
+/* =========================================================
+   FOUNDING TEAM - RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .belief-item {
+
+        flex:
+            1 1 40%;
+
+        max-width:
+            320px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .beliefs-list {
+
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+    }
+
+
+    .belief-item {
+
+        width:
+            100%;
+
+        max-width:
+            360px;
+    }
+
+
+    .belief-image {
+
+        height:
+            300px;
+    }
+
+}
+
+/* =========================================================
+   CTA BUTTONS
+   ========================================================= */
+
+.cta-buttons {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        15px;
+
+    flex-wrap:
+        wrap;
+}
+
+
+.cta-button.secondary {
+
+    background:
+        transparent;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.5);
+}
+
+
+/* =========================================================
+   SERMONS / MESSAGES
+   ========================================================= */
+
+.sermon-video {
+
+    width:
+        100%;
+}
+
+
+.video-frame {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    min-height:
+        430px;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-dark),
+            var(--primary-deep)
+        );
+
+    box-shadow:
+        var(--shadow-lg);
+}
+
+
+.video-placeholder {
+
+    min-height:
+        430px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        40px;
+
+    text-align:
+        center;
+
+    color:
+        #ffffff;
+}
+
+
+.video-placeholder span {
+
+    margin-top:
+        20px;
+
+    color:
+        var(--accent-light);
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2px;
+}
+
+
+.video-placeholder p {
+
+    max-width:
+        400px;
+
+    margin-top:
+        10px;
+
+    color:
+        rgba(255,255,255,0.72);
+
+    line-height:
+        1.7;
+}
+
+
+.video-play-icon {
+
+    width:
+        78px;
+
+    height:
+        78px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding-left:
+        4px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--accent);
+
+    color:
+        #ffffff;
+
+    font-size:
+        24px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.25);
+}
+
+
+
+
+.sermon-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        25px;
+
+    margin-top:
+        50px;
+}
+
+
+.sermon-card {
+
+    overflow:
+        hidden;
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        12px;
+
+    transition:
+        var(--transition);
+}
+
+
+.sermon-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        var(--shadow-lg);
+}
+
+
+.sermon-card-image {
+
+    position:
+        relative;
+
+    height:
+        220px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-dark),
+            var(--primary)
+        );
+}
+
+
+.sermon-play {
+
+    width:
+        58px;
+
+    height:
+        58px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding-left:
+        3px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--accent);
+
+    color:
+        #ffffff;
+}
+
+
+.sermon-card-content {
+
+    padding:
+        28px;
+}
+
+
+.sermon-card-content > span {
+
+    color:
+        var(--primary);
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1.5px;
+}
+
+
+.sermon-card-content h3 {
+
+    margin:
+        10px 0;
+
+    color:
+        var(--text);
+
+    font-size:
+        22px;
+}
+
+
+.sermon-card-content p {
+
+    margin-bottom:
+        20px;
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.7;
+}
+
+
+.sermon-card-content a {
+
+    color:
+        var(--primary);
+
+    font-weight:
+        700;
+}
+
+
+.message-feature {
+
+    height:
+        100%;
+
+    min-height:
+        450px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--primary-dark),
+            var(--primary-deep)
+        );
+
+    color:
+        #ffffff;
+
+    text-align:
+        center;
+}
+
+
+.message-feature-icon {
+
+    width:
+        75px;
+
+    height:
+        75px;
+
+    margin-bottom:
+        25px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--accent);
+
+    font-size:
+        30px;
+}
+
+
+.message-feature h3 {
+
+    margin:
+        0;
+
+    font-size:
+        42px;
+}
+
+
+.message-feature span {
+
+    margin-top:
+        5px;
+
+    color:
+        var(--accent-light);
+
+    font-size:
+        28px;
+
+    font-weight:
+        700;
+}
+
+
+.message-feature strong {
+
+    font-size:
+        28px;
+
+    font-weight:
+        800;
+}
+
+
+/* =========================================================
+   GALLERY PAGE
+   ========================================================= */
+
+.gallery-intro {
+
+    padding:
+        100px 0 60px;
+
+    background:
+        var(--background);
+}
+
+
+.gallery-section {
+
+    padding:
+        40px 0 100px;
+
+    background:
+        var(--background);
+}
+
+
+.gallery-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    grid-auto-rows:
+        280px;
+
+    gap:
+        20px;
+}
+
+
+.gallery-item {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        12px;
+
+    background:
+        var(--surface-alt);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.gallery-item.gallery-large {
+
+    grid-column:
+        span 2;
+
+    grid-row:
+        span 2;
+}
+
+
+.gallery-item.gallery-wide {
+
+    grid-column:
+        span 2;
+}
+
+
+.gallery-item img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+.gallery-item:hover img {
+
+    transform:
+        scale(1.06);
+}
+
+
+.gallery-overlay {
+
+    position:
+        absolute;
+
+    inset:
+        auto 0 0 0;
+
+    padding:
+        50px 25px 25px;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(11, 18, 32, 0.95),
+            rgba(11, 18, 32, 0)
+        );
+
+    color:
+        #ffffff;
+}
+
+
+.gallery-overlay span {
+
+    color:
+        var(--accent-light);
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1.5px;
+}
+
+
+.gallery-overlay h3 {
+
+    margin-top:
+        7px;
+
+    font-size:
+        22px;
+}
+
+
+/* =========================================================
+   FEATURED STORY
+   ========================================================= */
+
+.gallery-story {
+
+    padding:
+        100px 0;
+
+    background:
+        var(--surface);
+}
+
+
+.gallery-story-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        70px;
+
+    align-items:
+        center;
+}
+
+
+.gallery-story-image img {
+
+    width:
+        100%;
+
+    height:
+        520px;
+
+    object-fit:
+        cover;
+
+    border-radius:
+        12px;
+
+    box-shadow:
+        var(--shadow-lg);
+}
+
+
+.gallery-story-content h2 {
+
+    margin:
+        12px 0 25px;
+
+    font-size:
+        clamp(36px, 4vw, 54px);
+
+    line-height:
+        1.1;
+
+    color:
+        var(--text);
+}
+
+
+.gallery-story-content h2 span {
+
+    color:
+        var(--primary);
+}
+
+
+.gallery-story-content p {
+
+    margin-bottom:
+        18px;
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.8;
+}
+
+
+
+/* =========================================================
+   VALUES
+   ========================================================= */
+
+.gallery-values {
+
+    padding:
+        100px 0;
+
+    background:
+        var(--surface-alt);
+}
+
+
+.values-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        25px;
+
+    margin-top:
+        50px;
+}
+
+
+.value-card {
+
+    padding:
+        40px 30px;
+
+    text-align:
+        center;
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        12px;
+
+    transition:
+        var(--transition);
+}
+
+
+.value-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        var(--shadow-lg);
+}
+
+
+.value-icon {
+
+    width:
+        65px;
+
+    height:
+        65px;
+
+    margin:
+        0 auto 22px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--surface-alt);
+
+    color:
+        var(--primary);
+
+    font-size:
+        25px;
+}
+
+
+.value-card h3 {
+
+    margin-bottom:
+        12px;
+
+    color:
+        var(--text);
+
+    font-size:
+        22px;
+}
+
+
+.value-card p {
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.7;
+}
+
+
+/* =========================================================
+   GALLERY MEDIA
+   ========================================================= */
+
+.gallery-media-section {
+
+    padding:
+        90px 0;
+
+    background:
+       green;
+}
+
+
+.gallery-media-section.videos-section {
+
+    background:
+        var(--surface-alt);
+}
+
+
+.media-section-heading {
+
+    margin-bottom:
+        45px;
+}
+
+
+.media-section-heading h2 {
+
+    margin-top:
+        10px;
+
+    color:
+        var(--text);
+
+    font-size:
+        clamp(34px, 4vw, 48px);
+}
+
+/* =========================================================
+   IMAGE GALLERY
+   ========================================================= */
+
+.image-gallery {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        18px;
+
+    width:
+        100%;
+
+    margin:
+        0;
+
+    padding:
+        0;
+}
+
+
+.gallery-image {
+
+    width:
+        100%;
+
+    height:
+        280px;
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        12px;
+
+    background:
+        var(--surface);
+}
+
+
+.gallery-image img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        block;
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+    object-fit:
+        cover;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+.gallery-image:hover img {
+
+    transform:
+        scale(1.06);
+}
+
+
+/* =========================================================
+   VIDEO GALLERY
+   ========================================================= */
+
+.video-gallery {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:
+        30px;
+}
+
+
+.gallery-video {
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        12px;
+
+    background:
+        var(--surface);
+
+    transition:
+        var(--transition);
+}
+
+
+.gallery-video:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        var(--shadow-lg);
+}
+
+
+.video-thumbnail {
+
+    position:
+        relative;
+
+    height:
+        320px;
+
+    overflow:
+        hidden;
+}
+
+
+.video-thumbnail img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        block;
+
+    object-fit:
+        cover;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+.gallery-video:hover
+.video-thumbnail img {
+
+    transform:
+        scale(1.05);
+}
+
+
+.video-play {
+
+    position:
+        absolute;
+
+    top:
+        50%;
+
+    left:
+        50%;
+
+    width:
+        70px;
+
+    height:
+        70px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius:
+        50%;
+
+    background:
+        var(--accent);
+
+    color:
+        #ffffff;
+
+    font-size:
+        22px;
+
+    padding-left:
+        4px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.3);
+}
+
+
+.video-info {
+
+    padding:
+        25px;
+}
+
+
+.video-info h3 {
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--text);
+
+    font-size:
+        22px;
+}
+
+
+.video-info p {
+
+    margin:
+        0;
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.6;
+}
+
+
+.gallery-more {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    margin-top:
+        40px;
+}
+
+
+.gallery-more .cta-button {
+
+    min-width:
+        190px;
+
+    text-align:
+        center;
+}
+
+
+/* =========================================================
+   AGFC BRAND COLOR CONSISTENCY
+   ========================================================= */
+
+/*
+   LIGHT MODE:
+   Section labels keep their original blue/green-style color.
+
+   DARK MODE:
+   OUR FOCUS / WHAT GUIDES US remain bright yellow.
+*/
+
+.welcome-content .section-label,
+.ministries-preview .section-label {
+
+    color:
+        var(--agfc-yellow) !important;
+}
+
+
+.services-section .section-label,
+.beliefs-section .section-label {
+
+    color:
+        var(--primary) !important;
+}
+
+
+[data-theme="dark"] .welcome-content .section-label,
+[data-theme="dark"] .ministries-preview .section-label,
+[data-theme="dark"] .services-section .section-label,
+[data-theme="dark"] .beliefs-section .section-label,
+.dark-theme .welcome-content .section-label,
+.dark-theme .ministries-preview .section-label,
+.dark-theme .services-section .section-label,
+.dark-theme .beliefs-section .section-label {
+
+    color:
+        var(--agfc-yellow-dark) !important;
+}
+
+
+/* =========================================================
+   AGFC TEXT VISIBILITY ON MAGENTA SECTIONS
+   ========================================================= */
+
+/*
+   These sections use the magenta page background,
+   so their supporting text stays slightly white
+   in LIGHT MODE for proper visibility.
+*/
+
+.welcome-content p,
+.ministries-preview .section-heading p {
+
+    color:
+        var(--agfc-light-text) !important;
+}
+
+
+/* =========================================================
+   AGFC HEADINGS ON MAGENTA SECTIONS
+   ========================================================= */
+
+.ministries-preview .section-heading h2 {
+
+    color:
+        #ffffff !important;
+}
+
+
+.welcome-section .welcome-content h2 {
+
+    color:
+        #ffffff;
+}
+
+
+.welcome-section .welcome-content h2 span {
+
+    color:
+        #ffffff !important;
+}
+
+
+/* =========================================================
+   AGFC TEXT LINK
+   ========================================================= */
+
+.text-link {
+
+    color:
+        var(--agfc-yellow) !important;
+}
+
+
+.text-link:hover {
+
+    color:
+        var(--agfc-yellow) !important;
+}
+
+
+[data-theme="dark"] .text-link,
+[data-theme="dark"] .text-link:hover,
+.dark-theme .text-link,
+.dark-theme .text-link:hover {
+
+    color:
+        var(--agfc-yellow-dark) !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+    .desktop-nav,
+    .nav-action {
+
+        display:
+            none;
+    }
+
+
+    .mobile-menu-btn {
+
+        display:
+            flex;
+    }
+
+
+    .footer-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .sermon-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .gallery-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .gallery-item.gallery-large {
+
+        grid-column:
+            span 2;
+
+        grid-row:
+            span 1;
+    }
+
+
+    .gallery-story-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            40px;
+    }
+
+
+    .values-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .image-gallery {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .video-gallery {
+
+        grid-template-columns:
+            1fr;
+    }
+}
+
+
+@media (max-width: 850px) {
+
+    .hero {
+
+        min-height:
+            580px;
+    }
+
+
+    .welcome-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            45px;
+    }
+
+
+    .welcome-image img {
+
+        height:
+            400px;
+    }
+
+
+    .service-cards,
+    .ministry-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    body {
+
+        padding-top:
+            82px;
+    }
+
+
+    .top-bar {
+
+        display:
+            none;
+    }
+
+
+    .navbar {
+
+        top:
+            0;
+    }
+
+
+    .page-hero {
+
+        padding:
+            120px 20px 80px;
+    }
+
+
+    .about-intro,
+    .mission-section,
+    .story-section,
+    .beliefs-section {
+
+        padding:
+            70px 0;
+    }
+
+
+    .about-intro-grid,
+    .story-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            40px;
+    }
+
+
+    .about-intro-image img,
+    .story-image img {
+
+        height:
+            350px;
+    }
+
+
+    .mission-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .belief-item {
+
+        grid-template-columns:
+            55px 1fr;
+
+        gap:
+            15px;
+    }
+
+
+    .cta-buttons {
+
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+    }
+
+
+    .cta-buttons .cta-button {
+
+        width:
+            100%;
+
+        max-width:
+            280px;
+
+        text-align:
+            center;
+    }
+
+
+    .video-frame,
+    .video-placeholder {
+
+        min-height:
+            350px;
+    }
+
+
+    .sermon-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .message-feature {
+
+        min-height:
+            350px;
+    }
+
+
+    .gallery-story-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            40px;
+    }
+
+
+    .footer-grid {
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+
+        gap:
+            45px;
+    }
+
+
+    .footer-column {
+
+        width:
+            100%;
+
+        max-width:
+            320px;
+
+        text-align:
+            center;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+    }
+
+
+    .footer-column h3 {
+
+        text-align:
+            center;
+
+        margin-bottom:
+            18px;
+    }
+
+
+    .footer-column a,
+    .footer-column p {
+
+        text-align:
+            center;
+    }
+
+
+    .footer-column > a {
+
+        text-align:
+            center;
+    }
+
+
+    .service-item {
+
+        width:
+            100%;
+
+        text-align:
+            center;
+
+        align-items:
+            center;
+    }
+
+
+    .service-item strong,
+    .service-item span {
+
+        text-align:
+            center;
+    }
+
+
+    .footer-about {
+
+        align-items:
+            center;
+
+        text-align:
+            center;
+    }
+
+
+    .footer-about p {
+
+        text-align:
+            center;
+    }
+
+
+    .social-links {
+
+        justify-content:
+            center;
+    }
+
+
+    .welcome-section,
+    .services-section,
+    .ministries-preview {
+
+        padding:
+            70px 0;
+    }
+
+
+    .welcome-image img {
+
+        height:
+            320px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .top-info span:last-child {
+
+        display:
+            none;
+    }
+
+
+    .top-bar-inner {
+
+        justify-content:
+            center;
+    }
+
+
+    .top-contact {
+
+        display:
+            none;
+    }
+
+
+    .nav-inner {
+
+        min-height:
+            72px;
+    }
+
+
+    .logo-text strong {
+
+        font-size:
+            15px;
+    }
+
+
+    .footer-grid {
+
+        gap:
+            40px;
+
+        padding-top:
+            50px;
+
+        padding-bottom:
+            45px;
+    }
+
+
+    .footer-bottom-inner {
+
+        flex-direction:
+            column;
+
+        justify-content:
+            center;
+
+        text-align:
+            center;
+
+        padding:
+            18px 0;
+    }
+
+
+    .hero {
+
+        min-height:
+            550px;
+    }
+
+
+    .hero-content {
+
+        padding:
+            70px 0;
+    }
+
+
+    .hero p {
+
+        font-size:
+            16px;
+    }
+
+
+    .gallery-intro,
+    .gallery-section,
+    .gallery-story,
+    .gallery-values {
+
+        padding:
+            70px 0;
+    }
+
+
+    .gallery-grid {
+
+        grid-template-columns:
+            1fr;
+
+        grid-auto-rows:
+            300px;
+    }
+
+
+    .gallery-item.gallery-large,
+    .gallery-item.gallery-wide {
+
+        grid-column:
+            span 1;
+    }
+
+
+    .gallery-story-image img {
+
+        height:
+            350px;
+    }
+
+
+    .values-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .gallery-media-section {
+
+        padding:
+            65px 0;
+    }
+
+
+    .image-gallery {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .gallery-image {
+
+        height:
+            300px;
+    }
+
+
+    .video-thumbnail {
+
+        height:
+            240px;
+    }
+}
+
+
+
+/* =========================================================
+   CONTACT PAGE
+   ========================================================= */
+
+.contact-section {
+
+    padding:
+        100px 0;
+
+    background:
+        var(--surface);
+}
+
+
+.contact-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        0.9fr 1.1fr;
+
+    gap:
+        80px;
+
+    align-items:
+        start;
+}
+
+
+/* =========================================================
+   CONTACT INFORMATION
+   ========================================================= */
+
+.contact-info h2,
+.contact-form-wrapper h2 {
+
+    margin:
+        10px 0 18px;
+
+    color:
+        var(--text);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(34px, 4vw, 48px);
+
+    line-height:
+        1.15;
+}
+
+
+.contact-intro {
+
+    margin-bottom:
+        40px;
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.8;
+}
+
+
+.contact-item {
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        18px;
+
+    padding:
+        22px 0;
+
+    border-bottom:
+        1px solid
+        var(--border);
+}
+
+
+.contact-item:last-child {
+
+    border-bottom:
+        none;
+}
+
+
+.contact-icon {
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    flex-shrink:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--surface-alt);
+
+    font-size:
+        20px;
+}
+
+
+.contact-item h3 {
+
+    margin:
+        0 0 5px;
+
+    color:
+        var(--text);
+
+    font-size:
+        17px;
+}
+
+
+.contact-item p {
+
+    margin:
+        0;
+
+    color:
+        var(--muted);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.7;
+}
+
+
+/* =========================================================
+   CONTACT FORM
+   ========================================================= */
+
+.contact-form-wrapper {
+
+    padding:
+        45px;
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        12px;
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.contact-form-wrapper > p {
+
+    margin-bottom:
+        30px;
+
+    color:
+        var(--muted);
+}
+
+
+.contact-form {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        20px;
+}
+
+
+.form-group {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        7px;
+}
+
+
+.form-group label {
+
+    color:
+        var(--text);
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+}
+
+
+.form-group input,
+.form-group textarea {
+
+    width:
+        100%;
+
+    padding:
+        14px 16px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        7px;
+
+    background:
+        var(--surface);
+
+    color:
+        var(--text);
+
+    font-family:
+        inherit;
+
+    font-size:
+        14px;
+
+    outline:
+        none;
+
+    transition:
+        var(--transition);
+}
+
+
+.form-group textarea {
+
+    resize:
+        vertical;
+
+    min-height:
+        150px;
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+
+    color:
+        var(--muted);
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus {
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(15, 98, 254, 0.10);
+}
+
+
+.contact-submit {
+
+    width:
+        100%;
+
+    padding:
+        15px 25px;
+
+    border:
+        none;
+
+    border-radius:
+        7px;
+
+    background:
+        var(--primary);
+
+    color:
+        #ffffff;
+
+    font-size:
+        15px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        var(--transition);
+}
+
+
+.contact-submit:hover {
+
+    background:
+        var(--accent);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   VISIT US
+   ========================================================= */
+
+.contact-visit {
+
+    padding:
+        100px 0;
+
+    background:
+        var(--background);
+
+    text-align:
+        center;
+}
+
+
+.contact-visit-content {
+
+    max-width:
+        750px;
+
+    margin:
+        0 auto;
+}
+
+
+.contact-visit .section-label {
+
+    color:
+        var(--agfc-yellow) !important;
+}
+
+
+.contact-visit h2 {
+
+    margin:
+        10px 0 18px;
+
+    color:
+        #ffffff;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(34px, 4vw, 50px);
+
+    line-height:
+        1.15;
+}
+
+
+.contact-visit p {
+
+    max-width:
+        650px;
+
+    margin:
+        0 auto 30px;
+
+    color:
+        rgba(255,255,255,0.82);
+
+    line-height:
+        1.8;
+}
+
+
+.contact-map-button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        13px 25px;
+
+    border-radius:
+        6px;
+
+    background:
+        var(--primary);
+
+    color:
+        #ffffff;
+
+    font-weight:
+        700;
+
+    transition:
+        var(--transition);
+}
+
+
+.contact-map-button:hover {
+
+    background:
+        var(--accent);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   CONTACT RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .contact-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            50px;
+    }
+
+
+    .contact-form-wrapper {
+
+        padding:
+            35px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .contact-section,
+    .contact-visit {
+
+        padding:
+            70px 0;
+    }
+
+
+    .contact-form-wrapper {
+
+        padding:
+            25px 20px;
+    }
+
+
+    .contact-item {
+
+        gap:
+            14px;
+    }
+}
+
+/* =========================================================
+   TYPOGRAPHY UPDATE ONLY
+   IMPORTANT:
+   This block intentionally does NOT change the existing
+   website colors, backgrounds, gradients, borders or layout.
+========================================================= */
+
+/* ---------------------------------------------------------
+   FONT SYSTEM
+--------------------------------------------------------- */
+
+:root {
+    --font-heading: "Merriweather", Georgia, serif;
+    --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "IBM Plex Mono", "Courier New", monospace;
+}
+
+
+/* ---------------------------------------------------------
+   GLOBAL BODY TYPOGRAPHY
+--------------------------------------------------------- */
+
+body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+
+/* ---------------------------------------------------------
+   HEADINGS
+--------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 700;
+}
+
+h3 {
+    font-weight: 600;
+}
+
+h4,
+h5,
+h6 {
+    font-weight: 600;
+}
+
+
+/* ---------------------------------------------------------
+   HERO TYPOGRAPHY
+--------------------------------------------------------- */
+
+.hero h1 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+}
+
+.hero-small {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.hero p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+
+/* ---------------------------------------------------------
+   PAGE HERO
+--------------------------------------------------------- */
+
+.page-hero h1 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+}
+
+.page-hero p {
+    font-family: var(--font-body);
+    font-weight: 400;
+}
+
+.page-hero-label {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   NAVIGATION
+--------------------------------------------------------- */
+
+.desktop-nav a {
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.logo-text strong {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.logo-text span {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+}
+
+.theme-toggle {
+    font-family: var(--font-body);
+}
+
+.give-btn {
+    font-family: var(--font-body);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+
+/* ---------------------------------------------------------
+   TOP BAR
+--------------------------------------------------------- */
+
+.top-bar {
+    font-family: var(--font-body);
+}
+
+.top-contact {
+    font-weight: 400;
+}
+
+.top-contact a {
+    font-weight: 500;
+}
+
+
+/* ---------------------------------------------------------
+   SECTION LABELS
+--------------------------------------------------------- */
+
+.section-label {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   SECTION HEADINGS
+--------------------------------------------------------- */
+
+.section-heading h2,
+.welcome-content h2,
+.about-intro-content h2,
+.story-content h2,
+.gallery-story-content h2,
+.contact-info h2,
+.contact-form-wrapper h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.section-heading p,
+.welcome-content p,
+.about-intro-content p,
+.story-content p,
+.gallery-story-content p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.8;
+}
+
+
+/* ---------------------------------------------------------
+   SERVICE CARDS
+--------------------------------------------------------- */
+
+.service-card h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.service-card p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.75;
+}
+
+
+/* ---------------------------------------------------------
+   MINISTRY CARDS
+--------------------------------------------------------- */
+
+
+
+
+/* ---------------------------------------------------------
+   MISSION / VALUES / BELIEFS
+--------------------------------------------------------- */
+
+.mission-card h3,
+.value-card h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.mission-card p,
+.value-card p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.75;
+}
+
+.belief-item h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.belief-item p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.75;
+}
+
+
+/* ---------------------------------------------------------
+   CTA SECTIONS
+--------------------------------------------------------- */
+
+.cta-content h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.cta-content p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.75;
+}
+
+
+/* ---------------------------------------------------------
+   BUTTONS
+--------------------------------------------------------- */
+
+.hero-btn,
+.cta-button,
+.contact-submit,
+.contact-map-button {
+    font-family: var(--font-body);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+
+/* ---------------------------------------------------------
+   SERMON / VIDEO SECTIONS
+--------------------------------------------------------- */
+
+.sermon-card-content h3,
+.message-feature h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.sermon-card-content p,
+.message-feature p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.75;
+}
+
+.sermon-card-content > span,
+.message-feature > span {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   GALLERY
+--------------------------------------------------------- */
+
+.gallery-overlay span {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.gallery-story-content h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------
+   CONTACT PAGE
+--------------------------------------------------------- */
+
+.contact-info h2,
+.contact-form-wrapper h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.contact-info p,
+.contact-form-wrapper p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.75;
+}
+
+.contact-form label {
+    font-family: var(--font-body);
+    font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+    font-family: var(--font-body);
+    font-weight: 400;
+}
+
+.contact-submit {
+    font-weight: 600;
+}
+
+
+/* ---------------------------------------------------------
+   FOOTER
+--------------------------------------------------------- */
+
+.site-footer {
+    font-family: var(--font-body);
+}
+
+.footer-logo strong {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.footer-logo span {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+}
+
+.footer-column h3 {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.footer-column a,
+.footer-column p {
+    font-family: var(--font-body);
+}
+
+.footer-bottom {
+    font-family: var(--font-body);
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE MENU
+--------------------------------------------------------- */
+
+.mobile-menu a {
+    font-family: var(--font-body);
+    font-weight: 500;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE TYPOGRAPHY
+--------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    .hero h1 {
+        letter-spacing: -0.025em;
+    }
+
+    .page-hero h1 {
+        letter-spacing: -0.025em;
+    }
+
+    .section-heading h2,
+    .welcome-content h2,
+    .about-intro-content h2,
+    .story-content h2,
+    .gallery-story-content h2,
+    .contact-info h2,
+    .contact-form-wrapper h2 {
+        letter-spacing: -0.02em;
+    }
+}
+
+/* ---------------------------------------------------------
+   FOOTER SECTION HEADINGS
+--------------------------------------------------------- */
+
+/* Footer headings — same typography as header navigation */
+.site-footer h3,
+.site-footer .footer-title,
+.site-footer .footer-column-title,
+.footer-column h3 {
+    font-family: var(--font-body) !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em;
+    text-transform: none;
+}
+
+
+/* =========================================================
+   APPLE-STYLE IMAGE REVEAL ON SCROLL
+========================================================= */
+
+.scroll-image {
+    overflow: hidden;
+    position: relative;
+}
+
+/* Initial state */
+.scroll-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transform: scale(1.06);
+    clip-path: inset(12% 0 12% 0);
+
+    transition:
+        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+        clip-path 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* When image enters viewport */
+.scroll-image.is-visible img {
+    transform: scale(1);
+    clip-path: inset(0 0 0 0);
+}
+
+/* =========================================================
+   RESPONSIVE VIDEO PLAYER SYSTEM
+   Keeps every video at the same visual dimensions
+   without changing the existing website colors.
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   VIDEO GRID
+--------------------------------------------------------- */
+
+.video-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+    width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   VIDEO CARD
+--------------------------------------------------------- */
+
+.gallery-video {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   VIDEO FRAME
+--------------------------------------------------------- */
+
+.video-thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   ACTUAL VIDEO
+--------------------------------------------------------- */
+
+.video-thumbnail video {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    /*
+       Every video occupies exactly the same frame.
+    */
+    object-fit: cover;
+    object-position: center;
+
+    /*
+       Prevents unexpected inline spacing.
+    */
+    vertical-align: middle;
+}
+
+
+/* ---------------------------------------------------------
+   VIDEO INFORMATION
+--------------------------------------------------------- */
+
+.video-info {
+    padding: 22px 0 10px;
+}
+
+.video-info h3 {
+    margin: 0 0 8px;
+}
+
+.video-info p {
+    margin: 0;
+}
+
+
+/* ---------------------------------------------------------
+   REMOVE OLD IMAGE/PLAY-BUTTON BEHAVIOUR
+--------------------------------------------------------- */
+
+.video-thumbnail img {
+    display: none;
+}
+
+.video-play {
+    display: none;
+}
+
+
+/* ---------------------------------------------------------
+   TABLET
+--------------------------------------------------------- */
+
+@media (max-width: 850px) {
+
+    .video-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    .video-gallery {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .video-thumbnail {
+        aspect-ratio: 16 / 9;
+    }
+
+}
+
+/* =========================================================
+   YOUTUBE-STYLE VIDEO CARDS
+========================================================= */
+
+.videos-section .video-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px 28px;
+    width: 100%;
+    align-items: start;
+}
+
+.videos-section .gallery-video {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    overflow: hidden;
+}
+
+/* YouTube-style 16:9 video window */
+.videos-section .video-thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+}
+
+/* Actual video */
+.videos-section .video-thumbnail video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Video information underneath */
+.videos-section .video-info {
+    padding: 16px 4px 0;
+    height: auto;
+}
+
+.videos-section .video-info h3 {
+    margin: 0 0 7px;
+    line-height: 1.3;
+}
+
+.videos-section .video-info p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .videos-section .video-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 20px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .videos-section .video-gallery {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .videos-section .video-thumbnail {
+        aspect-ratio: 16 / 9;
+    }
+
+}
+
+.section-label,
+.church-cta > .container .cta-content > span {
+    font-family: var(--font-body);
+}
+
+/* =========================================================
+   AGFC — GLOBAL TYPOGRAPHY CONSISTENCY
+   Matches the visual language established on index.html
+   ========================================================= */
+
+/* Body / paragraph text */
+body,
+p,
+li,
+a,
+button,
+input,
+textarea,
+select {
+    font-family: var(--font-body);
+}
+
+/* Main page and section headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-body);
+}
+
+/* Section labels */
+.section-label,
+.page-hero-label {
+    font-family: var(--font-body);
+    font-weight: 600;
+}
+
+/* CTA label */
+.church-cta .cta-content > span {
+    font-family: var(--font-body);
+    font-weight: 600;
+}
+
+/* Keep heading hierarchy clear */
+h1 {
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 600;
+}
+
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+}
+
+/* About page cards */
+.mission-card h3,
+.belief-item h3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+}
+
+.about-intro-content p {
+    color: #a8b2c1;
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+/* =========================================================
+   ABOUT PAGE — MATCH HOMEPAGE VISUAL HIERARCHY
+   ========================================================= */
+
+/* Bright yellow section labels
+   Matches WELCOME TO AGFC / OUR FOCUS on index.html */
+.about-intro .section-label,
+.mission-section .section-label,
+.story-section .section-label,
+.beliefs-section .section-label {
+    color: var(--agfc-yellow);
+    font-family: var(--font-body);
+    font-weight: 600;
+}
+
+/* Keep the same bright yellow treatment if the label
+   is displayed in another theme */
+[data-theme="dark"] .about-intro .section-label,
+[data-theme="dark"] .mission-section .section-label,
+[data-theme="dark"] .story-section .section-label,
+[data-theme="dark"] .beliefs-section .section-label,
+.dark-theme .about-intro .section-label,
+.dark-theme .mission-section .section-label,
+.dark-theme .story-section .section-label,
+.dark-theme .beliefs-section .section-label {
+    color: var(--agfc-yellow);
+}
+
+
+/* =========================================================
+   ABOUT PAGE PARAGRAPHS
+   Match the paragraph color used on index.html
+   ========================================================= */
+
+.about-intro-content p,
+.story-content p {
+    color: var(--muted);
+    font-family: var(--font-body);
+}
+
+
+/* =========================================================
+   WHAT WE DO — MAIN HEADING
+   "Caring For Our Community"
+   ========================================================= */
+
+.story-section .story-content h2 {
+    color: #ffffff;
+    font-family: var(--font-body);
+}
+
+.story-section .story-content h2 span {
+    color: #ffffff;
+}
+
+.about-intro-content h2,
+.about-intro-content h2 span {
+    color: #ffffff;
+}
+
+/* FIND US — fully white heading in both themes */
+.about-intro .section-heading h2,
+.about-intro .section-heading h2 span {
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   ABOUT PAGE — MATCH WELCOME SECTION PARAGRAPH COLOR
+   ========================================================= */
+
+.about-intro-content p,
+.story-content p {
+    color: inherit;
+}
+/* =========================================
+   GALLERY HEADING COLORS
+========================================= */
+
+/* PHOTO GALLERY - BOTH MODES */
+.gallery-photo-label {
+    color: #ffd400 !important;
+}
+
+/* IMAGES - BOTH MODES */
+.gallery-images-title {
+    color: #ffffff !important;
+}
+
+
+/* =========================================
+   VIDEO GALLERY
+========================================= */
+
+/* LIGHT MODE */
+.gallery-video-label {
+    color: #0f62fe !important;
+}
+
+/* DARK MODE */
+[data-theme="dark"] .gallery-video-label,
+.dark-theme .gallery-video-label {
+    color: #ffd400 !important;
+}
+
+
+/* =========================================
+   VIDEOS TITLE
+========================================= */
+
+/* LIGHT MODE */
+.gallery-videos-title {
+    color: #000000 !important;
+}
+
+/* DARK MODE */
+[data-theme="dark"] .gallery-videos-title,
+.dark-theme .gallery-videos-title {
+    color: #ffffff !important;
+}
+
+
+.story-section {
+    padding: 0;
+}
+
+.sermon-video {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.video-frame {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.video-placeholder {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.video-placeholder img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+}
+
+.video-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================================================
+   SERMON CARDS
+   ========================================================= */
+
+.sermon-grid {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.sermon-card {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SERMON CARD MEDIA
+   ========================================================= */
+
+.sermon-card-image {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SERMON THUMBNAIL
+   ========================================================= */
+
+.sermon-thumbnail {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    object-fit: cover;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   SERMON VIDEO PLAYER
+   ========================================================= */
+
+.sermon-video-player {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    margin: 0;
+    padding: 0;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   SERMON PLAY BUTTON
+   ========================================================= */
+
+.sermon-play {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   ACTIVE VIDEO
+   ========================================================= */
+
+.sermon-card-image.video-active .sermon-thumbnail {
+    display: none;
+}
+
+
+.sermon-card-image.video-active .sermon-play {
+    display: none;
+}
+
+
+.sermon-card-image.video-active .sermon-video-player {
+    display: block;
+}
+
+
+/* =========================================================
+   SERMON CARD CONTENT
+   ========================================================= */
+
+.sermon-card-content {
+    margin: 0;
+    padding: 25px;
+}
+
+.about-intro
+{
+margin-top: 5rem;
+
+
+}
+
+.beliefs-section
+{
+margin-top: 5rem;
+
+
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    text-decoration: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.social-links img {
+    width: 22px;
+    height: 22px;
+    display: block;
+    filter: brightness(0) invert(1);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.social-links a:hover {
+    background: transparent;
+    transform: translateY(-2px);
+}
+
+.social-links a:hover img {
+    transform: scale(1.12);
+    opacity: 0.85;
+}
+
+/* =========================================================
+   DIGITAL PRODUCTS STORE PREVIEW
+   ========================================================= */
+
+.digital-store-section {
+    padding: 100px 0;
+    background: var(--surface-alt);
+}
+
+.digital-store-heading {
+    max-width: 760px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.digital-store-heading p {
+    max-width: 680px;
+    margin: 0 auto;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.digital-store-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.digital-product-card {
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.digital-product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+.digital-product-art {
+    min-height: 245px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 25px 22px;
+    color: #fff;
+    isolation: isolate;
+}
+
+.digital-product-art::before {
+    content: "";
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    right: -55px;
+    top: -45px;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 50%;
+    box-shadow: 0 0 0 20px rgba(255,255,255,.045),
+                0 0 0 42px rgba(255,255,255,.035);
+    z-index: -1;
+}
+
+.ai-book-art {
+    background: linear-gradient(145deg, #111827, #3730a3 65%, #7c3aed);
+}
+
+.company-book-art {
+    background: linear-gradient(145deg, #7f1d1d, #dc2626 65%, #fb923c);
+}
+
+.proposal-book-art {
+    background: linear-gradient(145deg, #064e3b, #047857 60%, #34d399);
+}
+
+.template-book-art {
+    background: linear-gradient(145deg, #0f172a, #155e75 65%, #0891b2);
+}
+
+.product-art-kicker {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    color: rgba(255,255,255,.8);
+}
+
+.digital-product-art strong {
+    max-width: 230px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(21px, 2vw, 27px);
+    line-height: 1.15;
+}
+
+.product-art-mark {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 8px 10px;
+    border: 1px solid rgba(255,255,255,.45);
+    border-radius: 6px;
+    background: rgba(255,255,255,.1);
+}
+
+.digital-product-content {
+    padding: 23px 21px 20px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.digital-product-type {
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.digital-product-content h3 {
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.35;
+    margin: 9px 0 10px;
+}
+
+.digital-product-content p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+.digital-product-bottom {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.digital-product-price {
+    color: var(--text);
+    font-size: 14px;
+}
+
+.digital-product-link {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.digital-product-link:hover {
+    color: var(--accent);
+}
+
+.digital-store-cta {
+    margin-top: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 25px 28px;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+}
+
+.digital-store-cta p {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.digital-store-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 13px 21px;
+    border-radius: 7px;
+    color: #fff;
+    background: var(--accent);
+    font-weight: 800;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+.digital-store-button:hover {
+    background: var(--primary);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 1050px) {
+    .digital-store-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .digital-product-art {
+        min-height: 230px;
+    }
+}
+
+@media (max-width: 600px) {
+    .digital-store-section {
+        padding: 70px 0;
+    }
+
+    .digital-store-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .digital-product-card {
+        max-width: 440px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .digital-product-art {
+        min-height: 220px;
+    }
+
+    .digital-store-cta {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        padding: 23px 18px;
+    }
+
+    .digital-store-button {
+        width: 100%;
+    }
+}
+

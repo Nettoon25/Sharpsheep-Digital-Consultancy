@@ -487,3 +487,243 @@ document.addEventListener('DOMContentLoaded', () => {
         init();
     }
 })();
+
+
+
+
+/* =========================================================
+   DIGITAL STORE — INTERACTIONS
+========================================================= */
+
+(() => {
+    "use strict";
+
+    function initDigitalStore() {
+        const store = document.querySelector(".digital-store-section");
+
+        // Stop safely if this page does not contain the store.
+        if (!store || store.dataset.storeInitialized === "true") return;
+
+        store.dataset.storeInitialized = "true";
+
+        const categoryButtons = store.querySelectorAll("[data-store-filter]");
+        const productCards = store.querySelectorAll(".store-product-card");
+        const reduceMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        /* -----------------------------------------------------
+           1. ASSIGN PRODUCT CATEGORIES
+           These match the four products in your supplied HTML.
+        ----------------------------------------------------- */
+
+     
+/* -----------------------------------------------------
+   1. READ CATEGORIES FROM EACH PRODUCT'S HTML
+----------------------------------------------------- */
+
+productCards.forEach((card) => {
+    const categories = (card.dataset.storeCategories || "")
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean);
+
+    card.dataset.storeCategories = categories.join(" ");
+    card.setAttribute("aria-hidden", "false");
+});
+
+        /* -----------------------------------------------------
+           2. FILTER PRODUCTS
+        ----------------------------------------------------- */
+
+        function filterProducts(selectedCategory) {
+            productCards.forEach((card) => {
+                const categories = (
+                    card.dataset.storeCategories || ""
+                ).split(/\s+/);
+
+                const shouldShow =
+                    selectedCategory === "all" ||
+                    categories.includes(selectedCategory);
+
+                card.classList.toggle(
+                    "is-filtered-out",
+                    !shouldShow
+                );
+
+                card.setAttribute(
+                    "aria-hidden",
+                    String(!shouldShow)
+                );
+
+                // Hide filtered-out cards from keyboard navigation.
+                card.querySelectorAll("a, button").forEach((element) => {
+                    if (!shouldShow) {
+                        element.setAttribute("tabindex", "-1");
+                    } else {
+                        element.removeAttribute("tabindex");
+                    }
+                });
+
+                if (shouldShow && !reduceMotion) {
+                    card.animate(
+                        [
+                            {
+                                opacity: 0.55,
+                                transform: "translateY(8px)"
+                            },
+                            {
+                                opacity: 1,
+                                transform: "translateY(0)"
+                            }
+                        ],
+                        {
+                            duration: 280,
+                            easing: "ease-out"
+                        }
+                    );
+                }
+            });
+        }
+
+        categoryButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const category = button.dataset.storeFilter || "all";
+
+                categoryButtons.forEach((otherButton) => {
+                    const isActive = otherButton === button;
+
+                    otherButton.classList.toggle(
+                        "is-active",
+                        isActive
+                    );
+
+                    otherButton.setAttribute(
+                        "aria-pressed",
+                        String(isActive)
+                    );
+                });
+
+                filterProducts(category);
+            });
+        });
+
+        /* -----------------------------------------------------
+           3. SCROLL-REVEAL ANIMATIONS
+        ----------------------------------------------------- */
+
+        const revealElements = [
+            store.querySelector(".store-heading"),
+            store.querySelector(".store-category-list"),
+            ...productCards,
+            store.querySelector(".store-bottom-cta"),
+            store.querySelector(".store-disclaimer")
+        ].filter(Boolean);
+
+        revealElements.forEach((element, index) => {
+            element.classList.add("store-reveal");
+            element.style.transitionDelay =
+                `${Math.min(index % 5, 4) * 75}ms`;
+        });
+
+        if (reduceMotion) {
+            revealElements.forEach((element) => {
+                element.classList.add("store-visible");
+            });
+        } else if ("IntersectionObserver" in window) {
+            const revealObserver = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("store-visible");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    threshold: 0.12,
+                    rootMargin: "0px 0px -35px 0px"
+                }
+            );
+
+            revealElements.forEach((element) => {
+                revealObserver.observe(element);
+            });
+        } else {
+            revealElements.forEach((element) => {
+                element.classList.add("store-visible");
+            });
+        }
+
+        /* -----------------------------------------------------
+           4. FEATURED PRODUCT HOVER FEEDBACK
+        ----------------------------------------------------- */
+
+        const featuredProduct = store.querySelector(
+            ".store-featured-product"
+        );
+
+        if (featuredProduct && !reduceMotion) {
+            featuredProduct.addEventListener("pointerenter", () => {
+                featuredProduct.style.setProperty(
+                    "--featured-hover",
+                    "1"
+                );
+            });
+
+            featuredProduct.addEventListener("pointerleave", () => {
+                featuredProduct.style.setProperty(
+                    "--featured-hover",
+                    "0"
+                );
+            });
+        }
+
+        /* -----------------------------------------------------
+           5. SMOOTH NAVIGATION TO THE STORE
+           Applies to same-page links pointing to #store.
+        ----------------------------------------------------- */
+
+        document.querySelectorAll('a[href="#store"]').forEach((link) => {
+            link.addEventListener("click", (event) => {
+                const target = document.getElementById("store");
+
+                if (!target) return;
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: reduceMotion ? "auto" : "smooth",
+                    block: "start"
+                });
+
+                if (window.location.hash !== "#store") {
+                    history.replaceState(null, "", "#store");
+                }
+            });
+        });
+
+        /* -----------------------------------------------------
+           6. OPTIONAL: UPDATE STORE LINK HOVER ACCESSIBILITY
+        ----------------------------------------------------- */
+
+        store.querySelectorAll(".store-product-link, .store-main-button")
+            .forEach((link) => {
+                link.addEventListener("keydown", (event) => {
+                    if (event.key === "Escape") {
+                        link.blur();
+                    }
+                });
+            });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            initDigitalStore,
+            { once: true }
+        );
+    } else {
+        initDigitalStore();
+    }
+})();
