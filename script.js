@@ -490,240 +490,103 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    const filterTabs = document.querySelectorAll(".filter-tab");
+    const searchInput = document.getElementById("service-search");
+    const servicesGrid = document.getElementById("services-grid");
+    const servicesCount = document.getElementById("services-count");
 
-/* =========================================================
-   DIGITAL STORE — INTERACTIONS
-========================================================= */
+    if (!servicesGrid || !searchInput) return;
 
-(() => {
-    "use strict";
+    const serviceCards = Array.from(
+        servicesGrid.querySelectorAll(".service-card")
+    );
 
-    function initDigitalStore() {
-        const store = document.querySelector(".digital-store-section");
+    let activeFilter = "all";
 
-        // Stop safely if this page does not contain the store.
-        if (!store || store.dataset.storeInitialized === "true") return;
+    // Display matching services
+    function filterServices() {
+        const searchTerm = searchInput.value
+            .trim()
+            .toLowerCase();
 
-        store.dataset.storeInitialized = "true";
+        let visibleCount = 0;
 
-        const categoryButtons = store.querySelectorAll("[data-store-filter]");
-        const productCards = store.querySelectorAll(".store-product-card");
-        const reduceMotion = window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
+        serviceCards.forEach(function (card) {
+            const category = (
+                card.dataset.category || ""
+            ).toLowerCase();
 
-        /* -----------------------------------------------------
-           1. ASSIGN PRODUCT CATEGORIES
-           These match the four products in your supplied HTML.
-        ----------------------------------------------------- */
+            const serviceName = (
+                card.dataset.name || ""
+            ).toLowerCase();
 
-     
-/* -----------------------------------------------------
-   1. READ CATEGORIES FROM EACH PRODUCT'S HTML
------------------------------------------------------ */
+            const cardText = card.textContent.toLowerCase();
 
-productCards.forEach((card) => {
-    const categories = (card.dataset.storeCategories || "")
-        .trim()
-        .split(/\s+/)
-        .filter(Boolean);
+            // Match the selected category
+            const matchesCategory =
+                activeFilter === "all" ||
+                category === activeFilter;
 
-    card.dataset.storeCategories = categories.join(" ");
-    card.setAttribute("aria-hidden", "false");
+            // Match the search term against service name,
+            // description, price and other card text
+            const matchesSearch =
+                searchTerm === "" ||
+                serviceName.includes(searchTerm) ||
+                category.includes(searchTerm) ||
+                cardText.includes(searchTerm);
+
+            const shouldShow =
+                matchesCategory && matchesSearch;
+
+            card.hidden = !shouldShow;
+
+            if (shouldShow) {
+                visibleCount++;
+            }
+        });
+
+        // Update the number of matching services
+        if (servicesCount) {
+            servicesCount.textContent = visibleCount;
+        }
+
+        // Update the results message
+        const resultsMessage = document.getElementById(
+            "services-results-message"
+        );
+
+        if (resultsMessage) {
+            resultsMessage.textContent = visibleCount === 0
+                ? "No services found. Try another search or filter."
+                : `Showing ${visibleCount} of ${serviceCards.length} services`;
+        }
+    }
+
+    // Handle category filter buttons
+    filterTabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+            activeFilter = tab.dataset.filter || "all";
+
+            filterTabs.forEach(function (button) {
+                const isActive = button === tab;
+
+                button.classList.toggle("active", isActive);
+                button.setAttribute(
+                    "aria-pressed",
+                    String(isActive)
+                );
+            });
+
+            filterServices();
+        });
+    });
+
+    // Handle live search as the user types
+    searchInput.addEventListener("input", filterServices);
+
+    // Make sure all services are displayed initially
+    filterServices();
 });
 
-        /* -----------------------------------------------------
-           2. FILTER PRODUCTS
-        ----------------------------------------------------- */
 
-        function filterProducts(selectedCategory) {
-            productCards.forEach((card) => {
-                const categories = (
-                    card.dataset.storeCategories || ""
-                ).split(/\s+/);
-
-                const shouldShow =
-                    selectedCategory === "all" ||
-                    categories.includes(selectedCategory);
-
-                card.classList.toggle(
-                    "is-filtered-out",
-                    !shouldShow
-                );
-
-                card.setAttribute(
-                    "aria-hidden",
-                    String(!shouldShow)
-                );
-
-                // Hide filtered-out cards from keyboard navigation.
-                card.querySelectorAll("a, button").forEach((element) => {
-                    if (!shouldShow) {
-                        element.setAttribute("tabindex", "-1");
-                    } else {
-                        element.removeAttribute("tabindex");
-                    }
-                });
-
-                if (shouldShow && !reduceMotion) {
-                    card.animate(
-                        [
-                            {
-                                opacity: 0.55,
-                                transform: "translateY(8px)"
-                            },
-                            {
-                                opacity: 1,
-                                transform: "translateY(0)"
-                            }
-                        ],
-                        {
-                            duration: 280,
-                            easing: "ease-out"
-                        }
-                    );
-                }
-            });
-        }
-
-        categoryButtons.forEach((button) => {
-            button.addEventListener("click", () => {
-                const category = button.dataset.storeFilter || "all";
-
-                categoryButtons.forEach((otherButton) => {
-                    const isActive = otherButton === button;
-
-                    otherButton.classList.toggle(
-                        "is-active",
-                        isActive
-                    );
-
-                    otherButton.setAttribute(
-                        "aria-pressed",
-                        String(isActive)
-                    );
-                });
-
-                filterProducts(category);
-            });
-        });
-
-        /* -----------------------------------------------------
-           3. SCROLL-REVEAL ANIMATIONS
-        ----------------------------------------------------- */
-
-        const revealElements = [
-            store.querySelector(".store-heading"),
-            store.querySelector(".store-category-list"),
-            ...productCards,
-            store.querySelector(".store-bottom-cta"),
-            store.querySelector(".store-disclaimer")
-        ].filter(Boolean);
-
-        revealElements.forEach((element, index) => {
-            element.classList.add("store-reveal");
-            element.style.transitionDelay =
-                `${Math.min(index % 5, 4) * 75}ms`;
-        });
-
-        if (reduceMotion) {
-            revealElements.forEach((element) => {
-                element.classList.add("store-visible");
-            });
-        } else if ("IntersectionObserver" in window) {
-            const revealObserver = new IntersectionObserver(
-                (entries, observer) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("store-visible");
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                },
-                {
-                    threshold: 0.12,
-                    rootMargin: "0px 0px -35px 0px"
-                }
-            );
-
-            revealElements.forEach((element) => {
-                revealObserver.observe(element);
-            });
-        } else {
-            revealElements.forEach((element) => {
-                element.classList.add("store-visible");
-            });
-        }
-
-        /* -----------------------------------------------------
-           4. FEATURED PRODUCT HOVER FEEDBACK
-        ----------------------------------------------------- */
-
-        const featuredProduct = store.querySelector(
-            ".store-featured-product"
-        );
-
-        if (featuredProduct && !reduceMotion) {
-            featuredProduct.addEventListener("pointerenter", () => {
-                featuredProduct.style.setProperty(
-                    "--featured-hover",
-                    "1"
-                );
-            });
-
-            featuredProduct.addEventListener("pointerleave", () => {
-                featuredProduct.style.setProperty(
-                    "--featured-hover",
-                    "0"
-                );
-            });
-        }
-
-        /* -----------------------------------------------------
-           5. SMOOTH NAVIGATION TO THE STORE
-           Applies to same-page links pointing to #store.
-        ----------------------------------------------------- */
-
-        document.querySelectorAll('a[href="#store"]').forEach((link) => {
-            link.addEventListener("click", (event) => {
-                const target = document.getElementById("store");
-
-                if (!target) return;
-
-                event.preventDefault();
-
-                target.scrollIntoView({
-                    behavior: reduceMotion ? "auto" : "smooth",
-                    block: "start"
-                });
-
-                if (window.location.hash !== "#store") {
-                    history.replaceState(null, "", "#store");
-                }
-            });
-        });
-
-        /* -----------------------------------------------------
-           6. OPTIONAL: UPDATE STORE LINK HOVER ACCESSIBILITY
-        ----------------------------------------------------- */
-
-        store.querySelectorAll(".store-product-link, .store-main-button")
-            .forEach((link) => {
-                link.addEventListener("keydown", (event) => {
-                    if (event.key === "Escape") {
-                        link.blur();
-                    }
-                });
-            });
-    }
-
-    if (document.readyState === "loading") {
-        document.addEventListener(
-            "DOMContentLoaded",
-            initDigitalStore,
-            { once: true }
-        );
-    } else {
-        initDigitalStore();
-    }
-})();
