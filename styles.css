@@ -5167,3 +5167,336 @@ body.dark-mode .ssds-testimonial-avatar,
     font-size: 12px;
     line-height: 1.5;
 }
+
+
+/* =========================================
+   CALL OUR TEAM — POPUP MODAL
+========================================= */
+
+.call-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(3, 12, 28, 0.78);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+/* Open State */
+.call-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Modal Box */
+.call-modal {
+    position: relative;
+
+    width: 100%;
+    max-width: 440px;
+
+    padding: 38px 30px 28px;
+
+    background: #ffffff;
+    color: #172033;
+
+    border: 1px solid rgba(247, 185, 22, 0.35);
+    border-radius: 22px;
+
+    text-align: center;
+
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.28);
+
+    transform: translateY(18px) scale(0.97);
+
+    transition: transform 0.25s ease;
+}
+
+.call-modal-overlay.active .call-modal {
+    transform: translateY(0) scale(1);
+}
+
+/* Close Button */
+.call-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f0f2f5;
+    color: #172033;
+
+    font-size: 28px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.call-modal-close:hover {
+    background: #061A3A;
+    color: #ffffff;
+}
+
+/* Phone Icon */
+.call-modal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 66px;
+    height: 66px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background: #fff5d6;
+    color: #061A3A;
+
+    font-size: 30px;
+}
+
+/* Eyebrow */
+.call-modal-eyebrow {
+    margin: 0 0 8px;
+
+    color: #98700a;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+/* Heading */
+.call-modal h2 {
+    margin: 0 0 12px;
+
+    color: #061A3A;
+
+    font-size: clamp(25px, 5vw, 32px);
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.2;
+}
+
+/* Description */
+.call-modal #callModalDescription {
+    margin: 0 auto 24px;
+
+    max-width: 330px;
+
+    color: #667085;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Phone Number Container */
+.call-modal-number {
+    padding: 17px 12px;
+    margin-bottom: 20px;
+
+    background: #f5f7fa;
+
+    border: 1px solid #e5e9f0;
+    border-radius: 12px;
+}
+
+.call-modal-number span {
+    color: #061A3A;
+
+    font-size: clamp(21px, 5vw, 27px);
+    font-weight: 750;
+    letter-spacing: 0.5px;
+
+    overflow-wrap: anywhere;
+}
+
+/* Action Buttons */
+.call-modal-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.call-modal-actions button,
+.call-modal-actions a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 48px;
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    text-align: center;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Copy Button */
+.call-modal-copy {
+    border: 1px solid #061A3A;
+
+    background: #ffffff;
+    color: #061A3A;
+}
+
+.call-modal-copy:hover {
+    background: #edf1f7;
+}
+
+/* Call Now Button */
+.call-modal-call {
+    border: 1px solid #f7b916;
+
+    background: #f7b916;
+    color: #061A3A;
+}
+
+.call-modal-call:hover {
+    background: #e5a900;
+    border-color: #e5a900;
+}
+
+/* Click Feedback */
+.call-modal-actions button:active,
+.call-modal-actions a:active {
+    transform: scale(0.97);
+}
+
+/* Copy Status */
+.call-modal-feedback {
+    min-height: 20px;
+    margin: 14px 0 0;
+
+    color: #287447;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Keyboard Focus */
+.call-modal button:focus-visible,
+.call-modal a:focus-visible {
+    outline: 3px solid #d49a00;
+    outline-offset: 3px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+    .call-modal {
+        padding: 35px 20px 24px;
+        border-radius: 18px;
+    }
+
+    .call-modal-actions {
+        gap: 8px;
+    }
+
+    .call-modal-actions button,
+    .call-modal-actions a {
+        padding: 11px 8px;
+        font-size: 12px;
+    }
+}
+
+/* Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+    .call-modal-overlay,
+    .call-modal,
+    .call-modal-close,
+    .call-modal-actions button,
+    .call-modal-actions a {
+        transition: none;
+    }
+}
+
+
+
+/* =========================================
+   SERVICE FILTER TABS — LIGHT MODE
+========================================= */
+
+.filter-tabs .filter-tab {
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.filter-tabs .filter-tab span {
+    color: inherit;
+}
+
+/* Hover and active tabs — light mode */
+.filter-tabs .filter-tab:hover,
+.filter-tabs .filter-tab.active {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+
+/* =========================================
+   SERVICE FILTER TABS — DARK MODE
+========================================= */
+
+[data-theme="dark"] .filter-tabs .filter-tab {
+    background: #fff;
+    color: #000;
+    border: 1px solid #fff;
+}
+
+[data-theme="dark"] .filter-tabs .filter-tab span {
+    color: inherit;
+}
+
+/* Hover and active tabs — dark mode */
+[data-theme="dark"] .filter-tabs .filter-tab:hover,
+[data-theme="dark"] .filter-tabs .filter-tab.active {
+    background: #e6e6e6;
+    color: #000;
+    border-color: #e6e6e6;
+}

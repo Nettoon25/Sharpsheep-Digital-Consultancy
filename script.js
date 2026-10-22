@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }));
   }
 
-  const cards = [...document.querySelectorAll('.service-card')];
   const tabs = [...document.querySelectorAll('.filter-tab')];
   const search = document.getElementById('service-search');
   const noResults = document.getElementById('no-results');
@@ -98,30 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
- {
-                "@context": "https://schema.org",
-                "@type": "ProfessionalService",
-                "name": "Sharpsheep Digital Consultancy",
-                "description": "Business documentation, company registration, policy writing, proposals, tender preparation and digital services in Kenya.",
-                "areaServed": {
-                    "@type": "Country",
-                    "name": "Kenya"
-                },
-                "address": {
-                    "@type": "PostalAddress",
-                    "addressLocality": "Nairobi",
-                    "addressCountry": "KE"
-                },
-                "telephone": "+254759984050",
-                "email": "sharpsheepdigitalconsultancy@gmail.com",
-                "sameAs": [
-                    "https://www.tiktok.com/@sharpsheep11"
-                ]
-            }
 
-
-
-            
+      
 /* ==========================================
    SHARPSHEEP — USER EXPERIENCE CONTROLLER
 ========================================== */
@@ -588,5 +565,131 @@ document.addEventListener("DOMContentLoaded", function () {
     // Make sure all services are displayed initially
     filterServices();
 });
+/* =========================================
+   CALL OUR TEAM — MODAL FUNCTIONALITY
+========================================= */
 
+document.addEventListener("DOMContentLoaded", function () {
+    const callOpenBtn = document.getElementById("openCallModal");
+    const callCloseBtn = document.getElementById("closeCallModal");
+    const callOverlay = document.getElementById("callModal");
+    const callCopyBtn = document.getElementById("copyChurchNumber");
+    const callNumber = document.getElementById("churchPhoneNumber");
+    const callCopyText = document.getElementById("copyButtonText");
+    const callFeedback = document.getElementById("callModalFeedback");
 
+    // Stop safely if the modal HTML isn't on this page.
+    if (!callOpenBtn || !callCloseBtn || !callOverlay) {
+        return;
+    }
+
+    let lastFocusedElement = null;
+
+    function openPhoneModal() {
+        lastFocusedElement = document.activeElement;
+
+        callOverlay.classList.add("active");
+        callOverlay.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        callCloseBtn.focus();
+    }
+
+    function closePhoneModal() {
+        callOverlay.classList.remove("active");
+        callOverlay.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+
+        if (callFeedback) {
+            callFeedback.textContent = "";
+        }
+
+        if (callCopyText) {
+            callCopyText.textContent = "Copy Number";
+        }
+
+        if (lastFocusedElement) {
+            lastFocusedElement.focus();
+        }
+    }
+
+    // Open modal
+    callOpenBtn.addEventListener("click", openPhoneModal);
+
+    // Close using X
+    callCloseBtn.addEventListener("click", closePhoneModal);
+
+    // Close when clicking the dark background
+    callOverlay.addEventListener("click", function (event) {
+        if (event.target === callOverlay) {
+            closePhoneModal();
+        }
+    });
+
+    // Close using Escape
+    document.addEventListener("keydown", function (event) {
+        if (
+            event.key === "Escape" &&
+            callOverlay.classList.contains("active")
+        ) {
+            closePhoneModal();
+        }
+    });
+
+    // Copy phone number
+    if (callCopyBtn && callNumber) {
+        callCopyBtn.addEventListener("click", async function () {
+            const number = "+254759984050";
+
+            try {
+                await navigator.clipboard.writeText(number);
+
+                if (callCopyText) {
+                    callCopyText.textContent = "Copied!";
+                }
+
+                if (callFeedback) {
+                    callFeedback.textContent =
+                        "Phone number copied successfully.";
+                }
+            } catch (error) {
+                // Fallback for browsers without clipboard access.
+                const input = document.createElement("textarea");
+
+                input.value = number;
+                input.setAttribute("readonly", "");
+                input.style.position = "fixed";
+                input.style.left = "-9999px";
+
+                document.body.appendChild(input);
+                input.select();
+
+                let copied = false;
+
+                try {
+                    copied = document.execCommand("copy");
+                } catch (copyError) {
+                    copied = false;
+                }
+
+                input.remove();
+
+                if (copied) {
+                    if (callCopyText) {
+                        callCopyText.textContent = "Copied!";
+                    }
+
+                    if (callFeedback) {
+                        callFeedback.textContent =
+                            "Phone number copied successfully.";
+                    }
+                } else {
+                    if (callFeedback) {
+                        callFeedback.textContent =
+                            "Copy failed. Please copy the number manually.";
+                    }
+                }
+            }
+        });
+    }
+});

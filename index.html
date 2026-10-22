@@ -19,6 +19,21 @@
         <style id="service-image-customizations">
             
         </style>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Sharpsheep Digital Consultancy",
+    "telephone": "+254759984050",
+    "email": "sharpsheepdigitalconsultancy@gmail.com",
+    "areaServed": {
+        "@type": "Country",
+        "name": "Kenya"
+    }
+}
+</script>
+
     </head>
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
@@ -91,10 +106,16 @@
                             <a class="button button-primary" href="https://wa.me/254759984050?text=Hello%20Sharpsheep%20Digital%20Consultancy%2C%20I%20would%20like%20to%20enquire%20about%20Cover%20Letters.%20Please%20confirm%20the%20scope%2C%20final%20price%2C%20requirements%20and%20delivery%20timeline." target="_blank" rel="noopener">
                                 Start a WhatsApp chat <span>↗</span>
                             </a>
-                            <a class="button button-quiet" href="tel:+254759984050">
-                                <span class="phone-icon">⌕</span>
-                                Call our team
-                            </a>
+                 <button
+    class="button button-quiet"
+    type="button"
+    id="openCallModal"
+    aria-haspopup="dialog"
+    aria-controls="callModal"
+>
+    <span class="phone-icon" aria-hidden="true">⌕</span>
+    Call our team
+</button>
                         </div>
                         <div class="hero-meta">
                             <span class="meta-pin">⌖</span>
@@ -2225,6 +2246,8 @@ The Judiciary is one of the three State organs established under Chapter 10, Art
             
          
         </main>
+
+        
         <footer class="site-footer">
             <div class="container footer-top">
                 <a class="brand footer-brand" href="#top">
@@ -2260,6 +2283,8 @@ The Judiciary is one of the three State organs established under Chapter 10, Art
         </a>
         <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+
+        
         <script>
 
 
@@ -2344,7 +2369,90 @@ function ssdsSendCartToWhatsApp() {
       
 <script src="script.js"></script>
 <script src="ssds-store.js"></script>
-</body>     
+
+
+<!-- CALL OUR TEAM MODAL -->
+<div
+    class="call-modal-overlay"
+    id="callModal"
+    aria-hidden="true"
+>
+    <div
+        class="call-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="callModalTitle"
+        aria-describedby="callModalDescription"
+    >
+
+        <!-- Close Button -->
+        <button
+            type="button"
+            class="call-modal-close"
+            id="closeCallModal"
+            aria-label="Close popup"
+        >
+            &times;
+        </button>
+
+        <!-- Modal Content -->
+        <div class="call-modal-icon" aria-hidden="true">
+            <span>☎</span>
+        </div>
+
+        <p class="call-modal-eyebrow">
+            GET IN TOUCH
+        </p>
+
+        <h2 id="callModalTitle">
+            Call our team
+        </h2>
+
+        <p id="callModalDescription">
+            We'd love to hear from you. Reach us directly using
+            the phone number below.
+        </p>
+
+        <!-- Phone Number -->
+        <div class="call-modal-number">
+            <span id="churchPhoneNumber">
+                +254 759 984 050
+            </span>
+        </div>
+
+        <!-- Modal Actions -->
+        <div class="call-modal-actions">
+
+ <button
+    class="button button-quiet"
+    type="button"
+    id="openCallModal"
+    aria-haspopup="dialog"
+    aria-controls="callModal"
+>
+    <span class="phone-icon" aria-hidden="true">⌕</span>
+    Call our team
+</button>
+
+            <a
+                class="call-modal-call"
+                href="tel:+254759984050"
+            >
+                <span aria-hidden="true">☎</span>
+                Call Now
+            </a>
+
+        </div>
+
+        <p
+            class="call-modal-feedback"
+            id="callModalFeedback"
+            role="status"
+            aria-live="polite"
+        ></p>
+
+    </div>
+</div>
 
     </body>
 </html>
