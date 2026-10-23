@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#061A3A">
+    <meta name="description" content="Embassy of Faith Worldwide — imparting believers to impact the world. Join us for worship, grow in faith, and connect with our church family in Nairobi, Kenya.">
+
+    <title>Events | Embassy of Faith Worldwide</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container nav-wrap">
+            <a
+                class="brand"
+                href="index.html"
+                aria-label="Embassy of Faith Worldwide home"
+            >
+                <img
+                    class="brand-logo-img"
+                    src="church-logo-placeholder.svg"
+                    alt="Embassy of Faith Worldwide logo placeholder — replace with official logo"
+                >
+            </a>
+
+            <button
+                class="menu-toggle"
+                aria-expanded="false"
+                aria-controls="site-nav"
+                aria-label="Open navigation"
+                type="button"
+            >
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav" id="site-nav" aria-label="Main navigation">
+                <a href="church.html">Our Church</a>
+                <a href="mandate.html">Our Mandate</a>
+                <a href="ministries.html">Ministries</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="messages.html">Messages</a>
+                <a href="events.html" aria-current="page">Events</a>
+
+                <a class="nav-button" href="visit.html">
+                    Plan a Visit
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+                <button
+                    class="theme-toggle"
+                    type="button"
+                    aria-label="Switch to dark mode"
+                    title="Toggle light/dark theme"
+                >
+                    <span class="theme-icon" aria-hidden="true">◐</span>
+                    <span class="theme-label">Dark mode</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="page-intro" style="display: none;">
+            <div class="container">
+                <p class="eyebrow">
+                    <span></span>
+                    GATHER WITH US
+                </p>
+
+                <h1>
+                    Life happens
+                    <em>in community.</em>
+                </h1>
+
+                <p>
+                    Find confirmed worship services, prayer meetings and church programmes here.
+                </p>
+            </div>
+        </section>
+
+        <section class="home-visit" style="margin-top: 0rem;">
+              <div class="home-visit-image">
+    <img
+        src="women awekening.jpg"
+        alt="Church worship and fellowship"
+    >
+</div>
+                <div class="container home-visit-inner">
+                    <div>
+        
+                        <h2 >
+                The Month's
+                            <br>
+                            <em>
+                              Theme
+                        </h2>
+                        <p style="display: none;">
+Meet the pastors and ministry leaders who serve our church, nurture spiritual growth, and walk alongside our congregation in faith.                        </p>
+                        <a class="button button-gold" href="visit.html" style="display: none;">
+                            Plan a visit
+                            <span>
+                                ↗
+                            </span>
+                        </a>
+                    </div>
+              
+                </div>
+            </section>
+
+       
+<section class="section events" id="events">
+    <div class="container">
+
+        <!-- Section Heading -->
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">
+                    <span></span>
+                    CHURCH CALENDAR
+                </p>
+
+                <h2>
+                    Plan for
+                    <em>what's ahead.</em>
+                </h2>
+            </div>
+
+            <p>
+                Discover upcoming worship services, prayer meetings,
+                fellowships, conferences and community outreach events.
+                Select a calendar view to explore what's coming up.
+            </p>
+        </div>
+
+        <!-- Calendar View Controls -->
+        <div
+            class="calendar-toolbar"
+            role="group"
+            aria-label="Choose calendar view"
+        >
+            <button
+                class="calendar-view is-active"
+                type="button"
+                data-view="week"
+                aria-pressed="true"
+            >
+                Week
+            </button>
+
+            <button
+                class="calendar-view"
+                type="button"
+                data-view="month"
+                aria-pressed="false"
+            >
+                Month
+            </button>
+
+            <button
+                class="calendar-view"
+                type="button"
+                data-view="year"
+                aria-pressed="false"
+            >
+                Year
+            </button>
+
+            <span class="calendar-note">
+                <span class="calendar-status-dot"></span>
+                Upcoming church events
+            </span>
+        </div>
+
+    
+<!-- ========================================================= -->
+<!-- CHURCH EVENT CALENDAR                                     -->
+<!-- WEEK / MONTH / YEAR VIEWS                                 -->
+<!-- ========================================================= -->
+
+<!-- ========================================================= -->
+<!-- WEEK VIEW                                                 -->
+<!-- ========================================================= -->
+
+<div
+    class="calendar-panel"
+    id="calendar-week"
+    data-calendar-panel="week"
+>
+    <div class="calendar-heading">
+        <div>
+            <span class="calendar-kicker">WEEKLY GATHERINGS</span>
+
+            <h3>A week for worship and connection</h3>
+
+            <p>
+                Find opportunities to worship, pray, learn,
+                serve and fellowship together.
+            </p>
+        </div>
+    </div>
+
+    <div class="calendar-events">
+
+        <!-- Wednesday Transformation Service -->
+        <article class="calendar-event">
+
+            <div class="calendar-poster">
+                <img
+                    src="wed service.jpg"
+                    alt="Wednesday Transformation Service poster"
+                    loading="lazy"
+                >
+            </div>
+
+            <div class="calendar-date">
+                <strong>Wednesday</strong>
+                <span>28 OCT 2026</span>
+            </div>
+
+            <div class="calendar-event-content">
+                <span class="calendar-category" style="display: none;">
+                    WORSHIP &amp; THE WORD
+                </span>
+
+                <h4>Wednesday Transformation Service</h4>
+
+                <p>
+                    Experience God's transforming power through
+                    His Word as we gather for worship, prayer,
+                    biblical teaching and fellowship.
+                </p><br>
+
+                <div class="calendar-event-meta">
+                    <span>
+                        <span aria-hidden="true">◷</span>
+                        5:30 PM
+                    </span>
+
+                    <span style="display: none;">
+                        <span aria-hidden="true" >⌖</span>
+                        Goshen City, Mradi Embakasi,
+                        along Total – Aviation Road
+                    </span>
+                </div>
+
+     
+
+        </article>
+
+
+        <!-- Thursday Prayer and Teaching -->
+        <article class="calendar-event">
+
+            <div class="calendar-poster">
+                <img
+                    src="wed service.jpg"
+                    alt="Prayer and Bible teaching gathering poster"
+                    loading="lazy"
+                >
+            </div>
+
+            <div class="calendar-date">
+                <strong>Thursday</strong>
+                <span>29 OCT 2026</span>
+            </div>
+
+            <div class="calendar-event-content">
+                <span class="calendar-category" style="display: none;">
+                    PRAYER &amp; THE WORD
+                </span>
+
+                <h4>Midweek Prayer and Teaching</h4>
+
+             
+                <p>
+                    Experience God's transforming power through
+                    His Word as we gather for worship, prayer,
+                    biblical teaching and fellowship.
+                </p><br>
+
+                <div class="calendar-event-meta">
+                    <span>
+                        <span aria-hidden="true">◷</span>
+                        5:30 PM
+                    </span>
+
+                    <span style="display: none;">
+                        <span aria-hidden="true" >⌖</span>
+                        Goshen City, Mradi Embakasi,
+                        along Total – Aviation Road
+                    </span>
+                </div>
+
+     
+
+        </article>
+
+
+
+        <!-- Friday Fellowship and Outreach -->
+        <article class="calendar-event">
+
+            <div class="calendar-poster">
+                <img
+                    src="kesha.jpg"
+                    alt="Church fellowship and community outreach poster"
+                    loading="lazy"
+                >
+            </div>
+
+            <div class="calendar-date">
+                <strong>Friday</strong>
+                <span>30 OCT 2026</span>
+            </div>
+
+            <div class="calendar-event-content">
+                <span class="calendar-category" style="display: none;">
+                    COMMUNITY
+                </span>
+
+                <h4>Friday Prayer kesha</h4>
+
+               
+                <p>
+                    Experience God's transforming power through
+                    His Word as we gather for worship, prayer,
+                    biblical teaching and fellowship.
+                </p><br>
+
+                <div class="calendar-event-meta">
+                    <span>
+                        <span aria-hidden="true">◷</span>
+                    9pm - 12am
+                    </span>
+
+                    <span style="display: none;">
+                        <span aria-hidden="true" >⌖</span>
+                        Goshen City, Mradi Embakasi,
+                        along Total – Aviation Road
+                    </span>
+                </div>
+
+     
+
+        </article>
+
+
+        <!-- Sunday Worship Service -->
+        <article class="calendar-event">
+
+            <div class="calendar-poster">
+                <img
+                    src="Sun Service.jpg"
+                    alt="Sunday Worship Service poster"
+                    loading="lazy"
+                >
+            </div>
+
+            <div class="calendar-date">
+                <strong>Sunday</strong>
+                <span>01 NOV 2026</span>
+            </div>
+
+            <div class="calendar-event-content">
+                <span class="calendar-category" style="display: none;">
+                    SUNDAY WORSHIP
+                </span>
+
+                <h4>Sunday Worship Service</h4>
+
+              
+                <p>
+                    Experience God's transforming power through
+                    His Word as we gather for worship, prayer,
+                    biblical teaching and fellowship.
+                </p><br>
+
+                <div class="calendar-event-meta">
+                    <span>
+                        <span aria-hidden="true">◷</span>
+                        5:30 PM
+                    </span>
+
+                    <span style="display: none;">
+                        <span aria-hidden="true" >⌖</span>
+                        Goshen City, Mradi Embakasi,
+                        along Total – Aviation Road
+                    </span>
+                </div>
+
+     
+
+        </article>
+
+
+    </div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- MONTH VIEW                                                -->
+<!-- ========================================================= -->
+
+<div
+    class="calendar-panel"
+    id="calendar-month"
+    data-calendar-panel="month"
+    hidden
+>
+    <div class="calendar-heading">
+        <div>
+            <span class="calendar-kicker">MONTHLY CALENDAR</span>
+
+            <h3>Gatherings throughout the month</h3>
+
+            <p>
+                Explore the church's monthly programme, from
+                regular worship to special events and outreach.
+            </p>
+        </div>
+    </div>
+
+    <div class="calendar-month-grid">
+
+        <!-- Monthly Programme 1 -->
+        <article class="calendar-month-card">
+
+            <div class="calendar-month-poster">
+                <img
+                    src="Sun Service.jpg"
+                    alt="Worship and prayer programme poster"
+                    loading="lazy"
+                >
+            </div>
+
+            <div class="calendar-month-content">
+                <span class="calendar-period">
+                    WEEK 01
+                </span>
+
+                <h4>Worship and Prayer</h4>
+
+                <p>
+                    Gather for worship, prayer and spiritual
+                    encouragement as we strengthen our
+                    relationship with God.
+                </p>
+
+                <div class="calendar-card-footer">
+                    <span>04 OCT 2026 · 9:00 AM</span>
+
+                    <a
+                        href="#contact"
+                        aria-label="View Worship and Prayer details"
+                    >
+                        <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </div>
+
+        </article>
+
+
+        <!-- Monthly Programme 2 -->
+        <article class="calendar-month-card">
+
+            <div class="calendar-month-poster">
+                <img
+                    src="wed service.jpg"
+                    alt="Ministry fellowship programme poster"
+                    loading="lazy"
+                >
+            </div>
+
+            <div class="calendar-month-content">
+                <span class="calendar-period">
+                    WEEK 02
+                </span>
+
+                <h4>Ministry Fellowship</h4>
+
+                <p>
+                    Connect with fellow believers, strengthen
+                    ministry relationships and participate
+                    in fellowship activities.
+                </p>
+
+                <div class="calendar-card-footer">
+                    <span>11 OCT 2026 · 2:00 PM</span>
+
+                    <a
+                        href="#contact"
+                        aria-label="View Ministry Fellowship details"
+                    >
+                        <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </div>
+
+        </article>
+
+
+        <!-- Monthly Programme 3 -->
+        <article class="calendar-month-card">
+
+            <div class="calendar-month-poster">
+                <img
+                    src="wed service.jpg"
+                    alt="Teaching and discipleship programme poster"
+                    loading="lazy"
+                >
+            </div>
+
+            <div class="calendar-month-content">
+                <span class="calendar-period">
+                    WEEK 03
+                </span>
+
+                <h4>Teaching and Discipleship</h4>
+
+                <p>
+                    Grow in faith and understanding through
+                    biblical teaching, discipleship and
+                    practical application of God's Word.
+                </p>
+
+                <div class="calendar-card-footer">
+                    <span>21 OCT 2026 · 5:30 PM</span>
+
+                    <a
+                        href="#contact"
+                        aria-label="View Teaching and Discipleship details"
+                    >
+                        <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </div>
+
+        </article>
+
+
+        <!-- Monthly Programme 4 -->
+        <article class="calendar-month-card">
+
+            <div class="calendar-month-poster">
+                <img
+                    src="kesha.jpg"
+                    alt="Community outreach programme poster"
+                    loading="lazy"
+                >
+            </div>
+
+            <div class="calendar-month-content">
+                <span class="calendar-period">
+                    WEEK 04
+                </span>
+
+                <h4>Community Outreach</h4>
+
+                <p>
+                    Share the love of Christ through service,
+                    evangelism and meaningful community
+                    engagement.
+                </p>
+
+                <div class="calendar-card-footer">
+                    <span>24 OCT 2026 · 10:00 AM</span>
+
+                    <a
+                        href="#contact"
+                        aria-label="View Community Outreach details"
+                    >
+                        <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </div>
+
+        </article>
+
+    </div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- YEAR VIEW                                                 -->
+<!-- ========================================================= -->
+
+<div
+    class="calendar-panel"
+    id="calendar-year"
+    data-calendar-panel="year"
+    hidden
+>
+    <div class="calendar-heading">
+        <div>
+            <span class="calendar-kicker">YEARLY OVERVIEW</span>
+
+            <h3>A year of faith, growth and service</h3>
+
+            <p>
+                Preview major programmes, ministry activities
+                and special gatherings planned throughout the year.
+            </p>
+        </div>
+    </div>
+
+    <div class="calendar-year-grid">
+
+        <!-- First Quarter -->
+        <article class="calendar-year-card">
+
+            <div class="calendar-year-poster">
+                <img
+                    src="wed service.jpg"
+                    alt="Prayer and vision programme poster"
+                    loading="lazy"
+                >
+
+                <span class="calendar-quarter">
+                    Q1
+                </span>
+            </div>
+
+            <div class="calendar-year-content">
+                <span class="calendar-period">
+                    JANUARY – MARCH 2027
+                </span>
+
+                <h4>Prayer and Vision</h4>
+
+                <p>
+                    Begin the year with prayer, spiritual
+                    renewal, vision and ministry planning.
+                </p>
+
+                <span class="calendar-year-status">
+                    18 JAN 2027 · 9:00 AM
+                </span>
+            </div>
+
+        </article>
+
+
+        <!-- Second Quarter -->
+        <article class="calendar-year-card">
+
+            <div class="calendar-year-poster">
+                <img
+                    src="wed service.jpg"
+                    alt="Growth and fellowship programme poster"
+                    loading="lazy"
+                >
+
+                <span class="calendar-quarter">
+                    Q2
+                </span>
+            </div>
+
+            <div class="calendar-year-content">
+                <span class="calendar-period">
+                    APRIL – JUNE 2027
+                </span>
+
+                <h4>Growth and Fellowship</h4>
+
+                <p>
+                    Encourage spiritual growth through
+                    discipleship, fellowship, teaching
+                    and ministry development.
+                </p>
+
+                <span class="calendar-year-status">
+                    19 APR 2027 · 10:00 AM
+                </span>
+            </div>
+
+        </article>
+
+
+        <!-- Third Quarter -->
+        <article class="calendar-year-card">
+
+            <div class="calendar-year-poster">
+                <img
+                    src="kesha.jpg"
+                    alt="Outreach and service programme poster"
+                    loading="lazy"
+                >
+
+                <span class="calendar-quarter">
+                    Q3
+                </span>
+            </div>
+
+            <div class="calendar-year-content">
+                <span class="calendar-period">
+                    JULY – SEPTEMBER 2027
+                </span>
+
+                <h4>Outreach and Service</h4>
+
+                <p>
+                    Reach the community through service,
+                    evangelism, compassion and practical
+                    ministry activities.
+                </p>
+
+                <span class="calendar-year-status">
+                    18 JUL 2027 · 9:00 AM
+                </span>
+            </div>
+
+        </article>
+
+
+        <!-- Fourth Quarter -->
+        <article class="calendar-year-card">
+
+            <div class="calendar-year-poster">
+                <img
+                    src="Sun Service.jpg"
+                    alt="Celebration and thanksgiving programme poster"
+                    loading="lazy"
+                >
+
+                <span class="calendar-quarter">
+                    Q4
+                </span>
+            </div>
+
+            <div class="calendar-year-content">
+                <span class="calendar-period">
+                    OCTOBER – DECEMBER 2027
+                </span>
+
+                <h4>Celebration and Thanksgiving</h4>
+
+                <p>
+                    Celebrate God's faithfulness through
+                    thanksgiving, special worship services
+                    and year-end gatherings.
+                </p>
+
+                <span class="calendar-year-status">
+                    13 DEC 2027 · 10:00 AM
+                </span>
+            </div>
+
+        </article>
+
+    </div>
+</div>
+
+
+        <!-- Calendar Footer Note -->
+        <div class="calendar-footer-note">
+
+            <p style="display: none;">
+                Event dates, times and venues will be updated
+                when officially confirmed by the church.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+        <section class="extra-section">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">
+                            <span></span>
+                            STAY CONNECTED
+                        </p>
+
+                        <h2>
+                            There is a place
+                            <em>for you.</em>
+                        </h2>
+                    </div>
+
+                    <p>
+                        Check back for updates and contact the church team if you need directions, accessibility information or help confirming a gathering.
+                    </p>
+                </div>
+
+                <div class="extra-grid">
+                    <article>
+                        <img
+                            class="extra-card-image"
+                            src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=85"
+                            alt="Photo mockup for Worship together"
+                            loading="lazy"
+                        >
+
+                        <h3>Worship together</h3>
+                        <p>
+                            Come together in praise, prayer and the teaching of God's Word.
+                        </p>
+                    </article>
+
+                    <article>
+                        <img
+                            class="extra-card-image"
+                            src="https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&fit=crop&w=900&q=85"
+                            alt="Photo mockup for Grow in faith"
+                            loading="lazy"
+                        >
+
+                        <h3>Grow in faith</h3>
+                        <p>
+                            Make room for reflection, biblical learning and encouragement.
+                        </p>
+                    </article>
+
+                    <article>
+                        <img
+                            class="extra-card-image"
+                            src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=900&q=85"
+                            alt="Photo mockup for Serve the community"
+                            loading="lazy"
+                        >
+
+                        <h3>Serve the community</h3>
+                        <p>
+                            Discover opportunities to care for others and take part in outreach.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-main">
+            <div class="footer-brand">
+                <a class="brand footer-logo" href="index.html">
+                    <img
+                        class="brand-logo-img"
+                        src="church-logo-placeholder.svg"
+                        alt="Embassy of Faith Worldwide logo placeholder — replace with official logo"
+                    >
+                </a>
+
+                <p>
+                    Imparting believers to impact the world — through faith, purpose, and service.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Take a step</h3>
+                <a href="visit.html">Plan a Visit</a>
+                <a href="events.html">Events</a>
+                <a href="visit.html#prayer">Prayer Request</a>
+                <a href="visit.html#giving">Giving</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Connect</h3>
+                <a href="visit.html#contact">Contact Us</a>
+
+                <a
+                    href="https://www.facebook.com/search/top?q=embassy%20of%20faith%20worldwide-%20nairobi.%20kenya."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Facebook ↗
+                </a>
+
+                <a
+                    href="https://www.google.com/maps/search/?api=1&query=Embassy+of+Faith+Worldwide+Fedha+Nairobi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Find us on Maps ↗
+                </a>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>
+                © <span id="year"></span> Embassy of Faith Worldwide. All rights reserved.
+            </p>
+
+            <div>
+                <a href="visit.html#contact">Privacy &amp; safeguarding</a>
+                <a href="index.html">Back to top ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-top" type="button" aria-label="Back to top">
+        ↑
+    </button>
+</body>
+</html>
