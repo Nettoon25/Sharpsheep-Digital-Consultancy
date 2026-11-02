@@ -14,6 +14,103 @@ document.addEventListener('DOMContentLoaded', () => {
     }));
   }
 
+    // ========================================
+  // LIGHT / DARK MODE TOGGLE
+  // ========================================
+
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const themeLabel = document.querySelector('.theme-toggle-label');
+  const html = document.documentElement;
+
+  // SVG icons (no external image files required)
+  const moonIcon = "data:image/svg+xml," + encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/>
+    </svg>
+  `);
+
+  const sunIcon = "data:image/svg+xml," + encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/>
+    </svg>
+  `);
+
+  // Apply the selected theme
+  function applyTheme(theme) {
+
+    const isDark = theme === 'dark';
+
+    html.setAttribute('data-theme', theme);
+
+    if (themeIcon) {
+      themeIcon.src = isDark ? sunIcon : moonIcon;
+      themeIcon.style.color = isDark ? '#f6c66b' : '#231e18';
+    }
+
+    if (themeLabel) {
+      themeLabel.textContent = isDark ? 'Light mode' : 'Dark mode';
+    }
+
+    if (themeToggle) {
+      themeToggle.setAttribute(
+        'aria-label',
+        isDark ? 'Switch to light theme' : 'Switch to dark theme'
+      );
+
+      themeToggle.setAttribute(
+        'title',
+        isDark ? 'Switch to light theme' : 'Switch to dark theme'
+      );
+    }
+
+    // Update browser theme colour
+    const themeColor = document.querySelector('meta[name="theme-color"]');
+
+    if (themeColor) {
+      themeColor.setAttribute(
+        'content',
+        isDark ? '#000000' : '#751a34'
+      );
+    }
+  }
+
+  // Load previously selected theme
+  let savedTheme = 'light';
+
+  try {
+    savedTheme = localStorage.getItem('sdc-theme') || 'light';
+  } catch (error) {
+    savedTheme = 'light';
+  }
+
+  applyTheme(savedTheme);
+
+  // Toggle theme when clicked
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+
+      const currentTheme = html.getAttribute('data-theme');
+
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+      applyTheme(newTheme);
+
+      try {
+        localStorage.setItem('sdc-theme', newTheme);
+      } catch (error) {
+        // Theme still works if browser storage is unavailable.
+      }
+
+    });
+  }
+
+  const cards = [...document.querySelectorAll('.service-card')];
   const tabs = [...document.querySelectorAll('.filter-tab')];
   const search = document.getElementById('service-search');
   const noResults = document.getElementById('no-results');
@@ -88,6 +185,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+
+  // Update the visible service count when the catalogue is filtered.
+  const servicesCount = document.getElementById('services-count');
+  const updateServicesCount = () => {
+    if (!servicesCount) return;
+    const visibleCards = cards.filter(card => !card.hidden).length;
+    servicesCount.textContent = String(visibleCards);
+  };
+  updateServicesCount();
+  tabs.forEach(tab => tab.addEventListener('click', updateServicesCount));
+  search?.addEventListener('input', updateServicesCount);
+  clearSearch?.addEventListener('click', updateServicesCount);
+
+  // Supply category buttons open a WhatsApp enquiry with the required prefix.
+  const supplyWhatsApp = (message) => {
+    const url = `https://wa.me/254759984050?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  document.querySelectorAll('.sdc-request-quote').forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.dataset.supplyCategory || 'Supplies';
+      supplyWhatsApp(`Hi SDC, I need a quote for ${category}: `);
+    });
+  });
+
+  // Compose a detailed quote request from the short form.
+  const supplyQuoteForm = document.getElementById('sdc-quote-form');
+  if (supplyQuoteForm) {
+    supplyQuoteForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!supplyQuoteForm.reportValidity()) return;
+
+      const formData = new FormData(supplyQuoteForm);
+      const item = String(formData.get('item') || '').trim();
+      const specs = String(formData.get('specifications') || '').trim();
+      const quantity = String(formData.get('quantity') || '').trim();
+      const town = String(formData.get('town') || '').trim();
+      const budget = String(formData.get('budget') || '').trim();
+
+      const message = [
+        'Hi SDC, I need a quote for Supplies: ',
+        `Item required: ${item}`,
+        `Model / specifications: ${specs || 'Not specified'}`,
+        `Quantity: ${quantity}`,
+        `Delivery town: ${town}`,
+        `Budget: ${budget || 'Not specified'}`
+      ].join('\n');
+
+      supplyWhatsApp(message);
+    });
+  }
+
   function showToast(message) {
     const toast = document.getElementById('toast');
     if (!toast) return;
@@ -95,601 +246,4 @@ document.addEventListener('DOMContentLoaded', () => {
     toast.classList.add('show');
     window.setTimeout(() => toast.classList.remove('show'), 2800);
   }
-});
-
-
-      
-/* ==========================================
-   SHARPSHEEP — USER EXPERIENCE CONTROLLER
-========================================== */
-
-(() => {
-    "use strict";
-
-    const init = () => {
-        const header = document.querySelector(".site-header");
-
-        const backToTop = document.querySelector(".back-to-top");
-
-        const navLinks = [
-            ...document.querySelectorAll(
-                '.site-header a[href^="#"], nav a[href^="#"]'
-            )
-        ];
-
-        const sections = [
-            ...document.querySelectorAll("section[id]")
-        ];
-
-        const reduceMotion = window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-        /* --------------------------------------
-           1. SCROLL POSITION
-        -------------------------------------- */
-
-        let ticking = false;
-
-        const updateScrollUI = () => {
-            const scrollY = window.scrollY;
-
-            if (header) {
-                header.classList.toggle(
-                    "is-scrolled",
-                    scrollY > 20
-                );
-            }
-
-            if (backToTop) {
-                backToTop.classList.toggle(
-                    "is-visible",
-                    scrollY > 450
-                );
-
-                backToTop.setAttribute(
-                    "aria-hidden",
-                    scrollY > 450 ? "false" : "true"
-                );
-            }
-
-            ticking = false;
-        };
-
-        window.addEventListener(
-            "scroll",
-            () => {
-                if (!ticking) {
-                    window.requestAnimationFrame(updateScrollUI);
-                    ticking = true;
-                }
-            },
-            { passive: true }
-        );
-
-        updateScrollUI();
-
-        /* --------------------------------------
-           2. SMOOTH INTERNAL NAVIGATION
-        -------------------------------------- */
-
-        document.addEventListener("click", (event) => {
-            const link = event.target.closest('a[href^="#"]');
-
-            if (!link) return;
-
-            const href = link.getAttribute("href");
-
-            if (!href || href === "#") return;
-
-            let target;
-
-            try {
-                target = document.querySelector(href);
-            } catch {
-                return;
-            }
-
-            if (!target) return;
-
-            event.preventDefault();
-
-            const headerHeight = header
-                ? header.getBoundingClientRect().height
-                : 0;
-
-            const targetTop =
-                target.getBoundingClientRect().top +
-                window.scrollY -
-                headerHeight -
-                16;
-
-            window.scrollTo({
-                top: Math.max(0, targetTop),
-                behavior: reduceMotion ? "auto" : "smooth"
-            });
-
-            /* Update the URL without triggering a second jump */
-            if (window.location.hash !== href) {
-                window.history.pushState(null, "", href);
-            }
-
-            /* Close mobile menu if present */
-            closeMobileMenu();
-
-            /* Keyboard and assistive-technology support */
-            if (!target.hasAttribute("tabindex")) {
-                target.setAttribute("tabindex", "-1");
-            }
-
-            target.focus({ preventScroll: true });
-        });
-
-        /* --------------------------------------
-           3. SCROLL REVEAL
-        -------------------------------------- */
-
-        const revealSelectors = [
-            ".section-heading",
-            ".approach-copy",
-            ".approach-art",
-            ".director-copy",
-            ".director-art",
-            ".partner-card",
-            ".insight-card",
-            ".steps-list .step",
-            ".partners-cta",
-            ".leadership-note"
-        ];
-
-        const revealElements = [
-            ...new Set(
-                revealSelectors.flatMap((selector) =>
-                    document.querySelectorAll(selector)
-                )
-            )
-        ];
-
-        revealElements.forEach((element) => {
-            /* Don't hide elements inside an already-hidden parent */
-            if (element.closest('[hidden], [aria-hidden="true"]')) {
-                return;
-            }
-
-            element.classList.add("js-reveal");
-        });
-
-        if ("IntersectionObserver" in window && !reduceMotion) {
-            const revealObserver = new IntersectionObserver(
-                (entries, observer) => {
-                    entries.forEach((entry) => {
-                        if (!entry.isIntersecting) return;
-
-                        entry.target.classList.add("is-visible");
-
-                        observer.unobserve(entry.target);
-                    });
-                },
-                {
-                    threshold: 0.12,
-                    rootMargin: "0px 0px -35px 0px"
-                }
-            );
-
-            revealElements.forEach((element) => {
-                revealObserver.observe(element);
-            });
-        } else {
-            revealElements.forEach((element) => {
-                element.classList.add("is-visible");
-            });
-        }
-
-        /* --------------------------------------
-           4. STAGGERED CARD ANIMATIONS
-        -------------------------------------- */
-
-        document.querySelectorAll(
-            ".partners-grid, .insights-grid, .steps-list"
-        ).forEach((container) => {
-            const children = container.querySelectorAll(
-                ".partner-card, .insight-card, .step"
-            );
-
-            children.forEach((child, index) => {
-                child.style.setProperty(
-                    "--reveal-delay",
-                    `${Math.min(index * 100, 300)}ms`
-                );
-            });
-        });
-
-        /* --------------------------------------
-           5. ACTIVE NAVIGATION LINK
-        -------------------------------------- */
-
-        if ("IntersectionObserver" in window) {
-            const navObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (!entry.isIntersecting) return;
-
-                        const id = entry.target.id;
-
-                        navLinks.forEach((link) => {
-                            const isActive =
-                                link.getAttribute("href") === `#${id}`;
-
-                            link.classList.toggle("active", isActive);
-
-                            if (isActive) {
-                                link.setAttribute(
-                                    "aria-current",
-                                    "location"
-                                );
-                            } else {
-                                link.removeAttribute("aria-current");
-                            }
-                        });
-                    });
-                },
-                {
-                    rootMargin: "-25% 0px -60% 0px",
-                    threshold: 0
-                }
-            );
-
-            sections.forEach((section) => {
-                navObserver.observe(section);
-            });
-        }
-
-        /* --------------------------------------
-           6. BACK-TO-TOP BUTTON
-        -------------------------------------- */
-
-        if (backToTop) {
-            backToTop.addEventListener("click", () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: reduceMotion ? "auto" : "smooth"
-                });
-
-                if (window.location.hash) {
-                    window.history.replaceState(
-                        null,
-                        "",
-                        window.location.pathname +
-                        window.location.search
-                    );
-                }
-            });
-        }
-
-        /* --------------------------------------
-           7. MOBILE MENU
-        -------------------------------------- */
-
-        const menuToggle = document.querySelector(
-            "[data-menu-toggle]"
-        );
-
-        const mobileMenu = document.querySelector(
-            "[data-mobile-menu]"
-        );
-
-        function closeMobileMenu() {
-            if (!menuToggle || !mobileMenu) return;
-
-            mobileMenu.classList.remove("is-open");
-            menuToggle.setAttribute("aria-expanded", "false");
-            document.body.classList.remove("menu-open");
-        }
-
-        function openMobileMenu() {
-            if (!menuToggle || !mobileMenu) return;
-
-            mobileMenu.classList.add("is-open");
-            menuToggle.setAttribute("aria-expanded", "true");
-            document.body.classList.add("menu-open");
-        }
-
-        if (menuToggle && mobileMenu) {
-            menuToggle.addEventListener("click", () => {
-                const isOpen =
-                    menuToggle.getAttribute("aria-expanded") === "true";
-
-                if (isOpen) {
-                    closeMobileMenu();
-                } else {
-                    openMobileMenu();
-                }
-            });
-
-            document.addEventListener("keydown", (event) => {
-                if (event.key === "Escape") {
-                    closeMobileMenu();
-                }
-            });
-
-            document.addEventListener("click", (event) => {
-                if (
-                    !mobileMenu.contains(event.target) &&
-                    !menuToggle.contains(event.target)
-                ) {
-                    closeMobileMenu();
-                }
-            });
-
-            window.addEventListener("resize", () => {
-                if (window.innerWidth > 768) {
-                    closeMobileMenu();
-                }
-            });
-        }
-
-        /* --------------------------------------
-           8. IMAGE LOADING FALLBACK
-        -------------------------------------- */
-
-        document.querySelectorAll("img").forEach((img) => {
-            img.addEventListener("error", () => {
-                img.classList.add("image-unavailable");
-            });
-        });
-
-        /* --------------------------------------
-           9. EXTERNAL LINKS
-        -------------------------------------- */
-
-        document.querySelectorAll('a[target="_blank"]').forEach((link) => {
-            const relValues = new Set(
-                (link.getAttribute("rel") || "")
-                    .split(/\s+/)
-                    .filter(Boolean)
-            );
-
-            relValues.add("noopener");
-            relValues.add("noreferrer");
-
-            link.setAttribute("rel", [...relValues].join(" "));
-        });
-    };
-
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", init, {
-            once: true
-        });
-    } else {
-        init();
-    }
-})();
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const filterTabs = document.querySelectorAll(".filter-tab");
-    const searchInput = document.getElementById("service-search");
-    const servicesGrid = document.getElementById("services-grid");
-    const servicesCount = document.getElementById("services-count");
-
-    if (!servicesGrid || !searchInput) return;
-
-    const serviceCards = Array.from(
-        servicesGrid.querySelectorAll(".service-card")
-    );
-
-    let activeFilter = "all";
-
-    // Display matching services
-    function filterServices() {
-        const searchTerm = searchInput.value
-            .trim()
-            .toLowerCase();
-
-        let visibleCount = 0;
-
-        serviceCards.forEach(function (card) {
-            const category = (
-                card.dataset.category || ""
-            ).toLowerCase();
-
-            const serviceName = (
-                card.dataset.name || ""
-            ).toLowerCase();
-
-            const cardText = card.textContent.toLowerCase();
-
-            // Match the selected category
-            const matchesCategory =
-                activeFilter === "all" ||
-                category === activeFilter;
-
-            // Match the search term against service name,
-            // description, price and other card text
-            const matchesSearch =
-                searchTerm === "" ||
-                serviceName.includes(searchTerm) ||
-                category.includes(searchTerm) ||
-                cardText.includes(searchTerm);
-
-            const shouldShow =
-                matchesCategory && matchesSearch;
-
-            card.hidden = !shouldShow;
-
-            if (shouldShow) {
-                visibleCount++;
-            }
-        });
-
-        // Update the number of matching services
-        if (servicesCount) {
-            servicesCount.textContent = visibleCount;
-        }
-
-        // Update the results message
-        const resultsMessage = document.getElementById(
-            "services-results-message"
-        );
-
-        if (resultsMessage) {
-            resultsMessage.textContent = visibleCount === 0
-                ? "No services found. Try another search or filter."
-                : `Showing ${visibleCount} of ${serviceCards.length} services`;
-        }
-    }
-
-    // Handle category filter buttons
-    filterTabs.forEach(function (tab) {
-        tab.addEventListener("click", function () {
-            activeFilter = tab.dataset.filter || "all";
-
-            filterTabs.forEach(function (button) {
-                const isActive = button === tab;
-
-                button.classList.toggle("active", isActive);
-                button.setAttribute(
-                    "aria-pressed",
-                    String(isActive)
-                );
-            });
-
-            filterServices();
-        });
-    });
-
-    // Handle live search as the user types
-    searchInput.addEventListener("input", filterServices);
-
-    // Make sure all services are displayed initially
-    filterServices();
-});
-/* =========================================
-   CALL OUR TEAM — MODAL FUNCTIONALITY
-========================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-    const callOpenBtn = document.getElementById("openCallModal");
-    const callCloseBtn = document.getElementById("closeCallModal");
-    const callOverlay = document.getElementById("callModal");
-    const callCopyBtn = document.getElementById("copyChurchNumber");
-    const callNumber = document.getElementById("churchPhoneNumber");
-    const callCopyText = document.getElementById("copyButtonText");
-    const callFeedback = document.getElementById("callModalFeedback");
-
-    // Stop safely if the modal HTML isn't on this page.
-    if (!callOpenBtn || !callCloseBtn || !callOverlay) {
-        return;
-    }
-
-    let lastFocusedElement = null;
-
-    function openPhoneModal() {
-        lastFocusedElement = document.activeElement;
-
-        callOverlay.classList.add("active");
-        callOverlay.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-
-        callCloseBtn.focus();
-    }
-
-    function closePhoneModal() {
-        callOverlay.classList.remove("active");
-        callOverlay.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-
-        if (callFeedback) {
-            callFeedback.textContent = "";
-        }
-
-        if (callCopyText) {
-            callCopyText.textContent = "Copy Number";
-        }
-
-        if (lastFocusedElement) {
-            lastFocusedElement.focus();
-        }
-    }
-
-    // Open modal
-    callOpenBtn.addEventListener("click", openPhoneModal);
-
-    // Close using X
-    callCloseBtn.addEventListener("click", closePhoneModal);
-
-    // Close when clicking the dark background
-    callOverlay.addEventListener("click", function (event) {
-        if (event.target === callOverlay) {
-            closePhoneModal();
-        }
-    });
-
-    // Close using Escape
-    document.addEventListener("keydown", function (event) {
-        if (
-            event.key === "Escape" &&
-            callOverlay.classList.contains("active")
-        ) {
-            closePhoneModal();
-        }
-    });
-
-    // Copy phone number
-    if (callCopyBtn && callNumber) {
-        callCopyBtn.addEventListener("click", async function () {
-            const number = "+254759984050";
-
-            try {
-                await navigator.clipboard.writeText(number);
-
-                if (callCopyText) {
-                    callCopyText.textContent = "Copied!";
-                }
-
-                if (callFeedback) {
-                    callFeedback.textContent =
-                        "Phone number copied successfully.";
-                }
-            } catch (error) {
-                // Fallback for browsers without clipboard access.
-                const input = document.createElement("textarea");
-
-                input.value = number;
-                input.setAttribute("readonly", "");
-                input.style.position = "fixed";
-                input.style.left = "-9999px";
-
-                document.body.appendChild(input);
-                input.select();
-
-                let copied = false;
-
-                try {
-                    copied = document.execCommand("copy");
-                } catch (copyError) {
-                    copied = false;
-                }
-
-                input.remove();
-
-                if (copied) {
-                    if (callCopyText) {
-                        callCopyText.textContent = "Copied!";
-                    }
-
-                    if (callFeedback) {
-                        callFeedback.textContent =
-                            "Phone number copied successfully.";
-                    }
-                } else {
-                    if (callFeedback) {
-                        callFeedback.textContent =
-                            "Copy failed. Please copy the number manually.";
-                    }
-                }
-            }
-        });
-    }
 });
