@@ -4276,3 +4276,54 @@ html[data-theme="dark"] .sdc-supply-image {
         height: 135px;
     }
 }
+
+/* TESTIMONIALS GRID */
+.ssds-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+    width: 100%;
+}
+
+/* TESTIMONIAL CARD */
+.ssds-testimonial-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* PUSH AUTHOR DETAILS TO THE BOTTOM */
+.ssds-testimonial-divider {
+    margin-top: auto;
+}
+
+.ssds-testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+/* TABLETS */
+@media (max-width: 900px) {
+    .ssds-testimonials-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .ssds-testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .ssds-testimonial-card {
+        padding: 24px;
+    }
+}
